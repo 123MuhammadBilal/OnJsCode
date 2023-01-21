@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		body{
+        text-align: center;
+        }
+		input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        }
+	</style>
+</head>
+<body>
+	<h1>Write a function that accepts a number and returns with max two float points.</h1>
+	<input type="number" id="number" autocomplete="off">
+	<br>
+	<button onclick="maxNum()">Get</button>
+	<br>
+	<p id="floatNum"></p>
+<script type="text/javascript">
+ function maxNum(){
+ 	//access input value
+    var num = document.getElementById("number").value;
+    
+    //input value converting in float value and fixed max tow float points
+    var numInFloat=parseFloat(num).toFixed(2);
+
+    //showing output in specific elemt
+    document.getElementById('floatNum').innerHTML=numInFloat;
+
+    //input value will emputy after fuction run succeed
+    document.getElementById("number").value="";
+}
+</script>
+</body>
+</html>

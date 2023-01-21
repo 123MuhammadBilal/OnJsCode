@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>HEAD AND TAIL</title>
+    <style type="text/css">
+        body{
+        text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Make a head/tails program</h1>
+    <button onclick="flipCoin()">FLIP COIN</button>
+    <br>
+    <p id="headsTails"></p>
+<script type="text/javascript">
+ function flipCoin() {
+    //using predefined function Math.random
+    let flip = Math.random();
+    if (flip < 0.5) {
+        document.getElementById('headsTails').innerHTML="HEADS";
+    } else {
+        document.getElementById('headsTails').innerHTML="TAILS";
+    }
+}
+</script>
+</body>
+</html>

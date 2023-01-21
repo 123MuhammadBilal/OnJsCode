@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take user's input and add a content to a list item</title>
+</head>
+<body>
+    <h1>Take user's input and add a content to a list item</h1>
+    <!-- button to add item into list item  -->
+    <button onclick="onAddItem()" >ADD InTo List Item</button>
+    <input type="text" name="text" id="inputText" autocomplete="off">
+    <script>
+        //user input
+        var userInput=document.getElementById('inputText');
+        //getting emputy arry list
+        let emputyList=[];
+        //dectaration of function
+        function onAddItem() {
+          //getting user input value in function  
+            let accessInput=userInput.value;
+          //pushing input value into emputy arry
+            emputyList.push(accessInput);
+          // using for loop to add more then 1 item in list
+            for (let i = 0; i < emputyList.length; i++) {
+                const element = emputyList[i];
+          //get output of arry one item thats is in arry list now
+                console.log(element);
+            }
+        }
+          //calling arry list in console with new itme 
+        console.log(emputyList);
+    </script>
+</body>
+</html>

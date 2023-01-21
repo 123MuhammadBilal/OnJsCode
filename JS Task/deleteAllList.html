@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <style>
+        body{
+        text-align: center;
+        }
+        div{
+            max-width: 200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div>
+<input  type="text" placeholder="List" id="list" />
+<br><br>
+<button onclick="onAddList()">Add TO List</button>
+<button onclick="onDelList()">DELL TO List</button>
+<br>
+<ul id="listShow">
+</ul>
+</div>
+<script type="text/javascript">
+    //access input 
+    const input = document.getElementById('list');
+    //function starts
+    function onAddList(){
+        text=input.value;
+        //creating element
+        var li = document.createElement("li");
+        //giving id to list
+        li.id="listId";
+        //ceating a textnode 
+        var list =document.createTextNode(text);
+        //adding textNode into <li> using .appendChild() 
+        li.appendChild(list);
+        //output
+        document.getElementById('listShow').appendChild(li);
+        //making input emputy
+        input.value="";
+    }
+    //function to delete all appendchild
+    function onDelList() {
+        //selecting only all appendchild with dom 
+        var removeList = document.querySelectorAll("[id='listId']");
+        //using for loop / it will delete all appendChild untill 0 appendChild 
+        for (let i = 0; i < removeList.length; i++) {
+        //using remove() to remove
+            removeList[i].remove(); 
+        }
+    }
+</script> 
+</body>
+</html>

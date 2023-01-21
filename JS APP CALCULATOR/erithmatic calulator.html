@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <style type="text/css">
+.container{
+    max-width: 175px;
+    margin: 0 auto;
+    background: red;
+}
+.no{
+    height: 20px;
+    color: #5a5a5a;
+    background: #f3f3f3;
+    padding: 10px 10px 10px 10px;
+    border: 2px solid;
+    font-size: 20px;margin: 0px;
+}
+.btn {
+    background: deepskyblue;
+    cursor: pointer;
+    border: 1px solid;
+    text-align: center;
+    font-size: 20px;
+    width: 9%;
+    float: left;
+    padding: 15px 10px 20px 16px;
+}
+.red {
+    background: red;
+}
+
+</style>
+</head>
+ <body>
+<div class="container">
+    <h1>CALCULATOR</h1>
+<h4 id="number" class="no"></h4>
+<div class="btns">
+ <div id="1" class="btn">1</div>
+ <div id="2" class="btn">2</div>
+ <div id="3" class="btn">3</div>
+ <div id="plu" class="btn red">+</div>
+ <div id="4" class="btn">4</div>
+ <div id="5" class="btn">5</div>
+ <div id="6" class="btn">6</div>
+ <div id="min" class="btn red">-</div>
+ <div id="7" class="btn">7</div>
+ <div id="8" class="btn">8</div>
+ <div id="9" class="btn">9</div>
+ <div id="sub" class="btn red">*</div>
+ <div id="0" class="btn">0</div>
+ <div id="c" class="btn red">c</div>
+ <div class="btn red" onclick="answer()">=</div>  
+ <div id="div" class="btn red">/</div> 
+</div>
+</div>
+<script>
+var set_at = function() {
+    var set = document.getElementById('number');
+    var ans = set.innerHTML += this.innerHTML;
+    localStorage.setItem("ans",ans);
+
+}
+function answer(){
+   try {
+document.getElementById('number').innerHTML=eval(localStorage.getItem('ans'));
+}
+catch(err) {
+    alert(err.message);
+    document.getElementById('number').innerHTML="";
+}
+}
+var clear_me = function(){
+    document.getElementById('number').innerHTML=a;
+    localStorage.setItem("ans",this.innerHTML);
+}
+document.getElementById('1').onclick = set_at;
+document.getElementById('2').onclick = set_at;
+document.getElementById('3').onclick = set_at;
+document.getElementById('4').onclick = set_at;
+document.getElementById('5').onclick = set_at;
+document.getElementById('6').onclick = set_at;
+document.getElementById('7').onclick = set_at;
+document.getElementById('8').onclick = set_at;
+document.getElementById('9').onclick = set_at;
+document.getElementById('0').onclick = set_at;
+document.getElementById('c').onclick = clear_me;
+document.getElementById('plu').onclick = set_at;
+document.getElementById('min').onclick = set_at;
+document.getElementById('sub').onclick = set_at;
+document.getElementById('div').onclick = set_at;
+let a = "";
+</script>
+</body>
+</html> 

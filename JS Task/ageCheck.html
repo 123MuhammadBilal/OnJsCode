@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <style>
+        body{
+        text-align: center;
+        }
+        input{
+        margin-top:22%;    
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        }
+    </style>
+</head>
+<body>
+<input  type="number" value="0" id="getAge" />
+<br><br>
+<button onclick="checkAge()">CHECK</button>
+<br><br>
+<span id="msg">______________________</span>
+
+<script type="text/javascript">
+    //show message
+    const msg = document.getElementById('msg');
+    //access input
+    const input = document.getElementById('getAge');
+
+    //function starts
+    function checkAge(){
+        age=input.value;
+        if (age<18) {
+            msg.innerHTML="Not Allowed";
+        }else if(age>30){
+            msg.innerHTML="Over Age";
+        }else{
+            msg.innerHTML="Allowed";
+        }
+    }
+</script> 
+</body>
+</html>

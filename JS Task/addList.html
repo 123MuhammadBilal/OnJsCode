@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <style>
+        body{
+        text-align: center;
+        }
+        div{
+            max-width: 200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div>
+<input  type="text" placeholder="List" id="list" />
+<br><br>
+<button onclick="addList()">Add TO List</button>
+<br>
+<ul id="listShow">
+</ul>
+</div>
+<script type="text/javascript">
+    //access input 
+    const input = document.getElementById('list');
+    //function starts
+    function addList(){
+        text=input.value;
+        //creating element
+        var li = document.createElement("li");
+        var list =document.createTextNode(text);
+        li.appendChild(list);
+        document.getElementById('listShow').appendChild(li);
+        input.value="";
+    }
+</script> 
+</body>
+</html>

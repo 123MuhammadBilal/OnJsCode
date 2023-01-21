@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style type="text/css">
+    body{
+        text-align: center;
+        }
+    input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        }
+  </style>
+</head>
+<body>
+  <h1> Create a program which returns user grade based on user's score. Evaluation is as follows: A = 80, B = 60, C = 40, F = <30 </h1>
+<label>Enter Your Score & Know Your Grade</label>
+<br>
+<input type="number" min="0" max="80" id="score">
+<br>
+<button id="clicker" onclick="onGrad()" >Grade</button>
+<script type="text/javascript">
+  var score = document.getElementById('score');
+function onGrad(){
+  var grade = score.value;
+  if(grade<=30) {
+   grade=("F");
+
+}else if(grade<=40) {
+  grade=("C");
+
+}else if(grade<=60) {
+  grade=("B");
+
+}else if(grade<=80) {
+  grade=("A");
+
+}
+else{
+  grade=("not showing please enter valid score");
+  }
+  alert("your grade is " + grade);
+  return grade;
+}
+</script>
+</body>
+</html>
