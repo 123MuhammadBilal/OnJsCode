@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO</title>
+    <style>
+        li {
+  list-style: none;
+  margin: 10px 0;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+    span {
+  background-color:#3498db;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 12px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  display: inline-block;
+  margin-left: auto;
+}
+.container{
+    max-width: 500px;
+    margin: 0 auto;
+}
+input[type="text"] {
+  padding: 12px 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+}
+input[type="text"]:focus {
+  border-color: #3498db;
+  outline: none;
+}
+button{
+    background-color: #3498db; /* or any other color */
+    color: white; /* text color */
+    padding: 12px 20px; /* size of the button */
+    border: none; /* remove border */
+    border-radius: 4px; /* round corners */
+    font-size: 16px; /* size of the text */
+    cursor: pointer; /* change cursor on hover */
+    transition: all 0.2s ease-in-out; /* smooth transition on hover */
+}
+button:hover {
+    background-color: #2980b9; /* change color on hover */
+}
+    </style>
+</head>
+<body>
+<div class="container">
+    <input type="text" name="text" id="text" autocomplete="off" required>
+    <button id="OnAddBtn">ADD</button>
+    <button onclick="onDell()">DEL</button>
+    <ul id="list">
+        <h1 id="heading">TODO ITEM</h1>
+    </ul>
+</div>
+<script>
+        //input access by Id
+        var input = document.getElementById('text');
+        var addBtn = document.getElementById('OnAddBtn');
+            //get user input value
+            addBtn.addEventListener("click",function(){
+                document.getElementById("heading").innerHTML="TODO ITEM";
+                if(input.value != ""){
+                    userInput=input.value;
+                    var li = document.createElement('li');
+                    li.innerHTML=userInput;
+                    var btn = document.createElement('span');
+                    btn.innerHTML="DEL";
+                    li.append(btn)
+                    var list=document.getElementById('list');
+                    list.appendChild(li)
+                    input.value="";
+                }
+                var Ondelone = document.querySelectorAll("span");
+                for (let i = 0; i < Ondelone.length; i++) {
+                    Ondelone[i].addEventListener("click", function(){
+                    Ondelone[i].parentElement.style.display="none";
+            })
+        }
+    });
+</script>
+<script>
+    function onDell() {
+        var removeAll = document.querySelectorAll("li");
+        for (let i = 0; i < removeAll.length; i++) {
+            removeAll[i].remove();
+        }  
+        document.getElementById("heading").innerHTML="LIST DELETED";
+    }
+</script>
+  
+</body>
+</html>
