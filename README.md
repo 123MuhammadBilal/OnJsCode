@@ -1,2 +1,2 @@
 # OnJsCode
-javascript basics
+Here are some basics of javascript
