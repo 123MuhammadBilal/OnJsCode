@@ -9,6 +9,7 @@ function recount(){
 	localStorage.setItem("COUNTER",x);
 	var inner=document.getElementById('cont').innerText=localStorage.getItem("COUNTER");
 }
+
 function openNav() {
   document.getElementById("mySidenav").style.width = "200px";
 }

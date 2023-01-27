@@ -6,17 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TODO</title>
     <style>
-        li {
-  list-style: none;
-  margin: 10px 0;
-  padding: 10px;
-  background: #f9f9f9;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
+textarea#message {
+    display: none;
+    width: 91%;
+    border: 3px solid #3498db;
+    border-radius: 3px;
 }
-
+li {
+    text-align: center;
+    border: 3px solid #3498db;
+    list-style: none;
+    margin: 10px 0;
+    padding: 3px;
+    background: #f9f9f9;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+ul#list {
+    padding: 0px;
+    color: #2980b9;
+}
+h1#heading {
+    text-align: center;
+    color: #2980b9;
+}
+span:hover{
+    width: 35px;
+  height: 35px;
+  background-color:#ff0000;
+  color: white;
+}
     span {
+    border-radius: 0px 7px 7px 0px;
   background-color:#3498db;
   color: white;
   border: none;
@@ -26,22 +48,36 @@
   height: 30px;
   text-align: center;
   display: inline-block;
-  margin-left: auto;
+  margin: auto;
+}
+p {
+    border-radius: 7px 0px 0px 7px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 12px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    display: inline-block;
+    margin: auto;
 }
 .container{
     max-width: 500px;
     margin: 0 auto;
 }
 input[type="text"] {
-  padding: 12px 20px;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  transition: all 0.2s ease-in-out;
+    padding: 3px 20px 7px;
+    border: 3px solid #3498db;
+    border-radius: 4px;
+    font-size: 22px;
+    transition: all 0.2s ease-in-out;
 }
 input[type="text"]:focus {
   border-color: #3498db;
   outline: none;
+  color: #2980b9;
 }
 button{
     background-color: #3498db; /* or any other color */
@@ -53,6 +89,7 @@ button{
     cursor: pointer; /* change cursor on hover */
     transition: all 0.2s ease-in-out; /* smooth transition on hover */
 }
+
 button:hover {
     background-color: #2980b9; /* change color on hover */
 }
@@ -60,6 +97,8 @@ button:hover {
 </head>
 <body>
 <div class="container">
+    <textarea type="messgae" id="message"<button>Save</button>></textarea>
+    <br>
     <input type="text" name="text" id="text" autocomplete="off" required>
     <button id="OnAddBtn">ADD</button>
     <button onclick="onDell()">DEL</button>
@@ -68,6 +107,7 @@ button:hover {
     </ul>
 </div>
 <script>
+        var message = document.getElementById('message');
         //input access by Id
         var input = document.getElementById('text');
         var addBtn = document.getElementById('OnAddBtn');
@@ -77,10 +117,14 @@ button:hover {
                 if(input.value != ""){
                     userInput=input.value;
                     var li = document.createElement('li');
-                    li.innerHTML=userInput;
+                    // li.id=Math.random(Math.random(Math.random()));
+                    var p = document.createElement('p');
+                    p.innerHTML="EDT";
                     var btn = document.createElement('span');
                     btn.innerHTML="DEL";
                     li.append(btn)
+                    li.append(userInput)
+                    li.append(p)
                     var list=document.getElementById('list');
                     list.appendChild(li)
                     input.value="";
@@ -89,6 +133,15 @@ button:hover {
                 for (let i = 0; i < Ondelone.length; i++) {
                     Ondelone[i].addEventListener("click", function(){
                     Ondelone[i].parentElement.style.display="none";
+            })
+        }
+        var editor = document.querySelectorAll("p");
+        var listControler = document.querySelectorAll("li");
+                for (let i = 0; i < editor.length && listControler.length; i++) {
+                    editor[i].addEventListener("click", function(){
+                        msgbox.innerHTML=listControler[i].innerHTML.slice(16, -10);
+                        msgbox.style.display="block";
+
             })
         }
     });
@@ -102,6 +155,6 @@ button:hover {
         document.getElementById("heading").innerHTML="LIST DELETED";
     }
 </script>
-  
+
 </body>
 </html>
