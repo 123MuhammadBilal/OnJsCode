@@ -1,55 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>TODO</title>
 </head>
+<style>
+    body{
+        background: black;
+    }
+    body,html,h1,h2,h3,h4{
+        margin: 0px;
+        padding: 0px;
+    }
+    input[type="text"]:focus {
+        -webkit-appearance: none;
+        border: 0px;
+        appearance: none;
+
+    }
+    input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        border: 0px;
+        appearance: none;
+        }
+    h1{
+    border-bottom: 3px solid;
+    font-size: 20px;
+    color: white;
+    padding: 10px;
+    }
+    input {
+    border-bottom: 3px inset  #fff;
+    margin-top: 10px;
+    font-size: 20px;
+    padding: 10px;
+    color: #fff;
+    background: black;
+    }
+    button{
+    border-bottom: 2px inset #fff;
+    font-size: 20px;
+    padding: 2px 13px;
+    color: #fff;
+    background: black;
+    margin: 10px 10px;
+    }
+    .container {
+    margin: 0 auto;
+    max-width: 100%;
+    text-align: center;
+    }
+    .editable{
+    margin-top: 25%;
+    width: 80%;
+    height: 50px;
+    padding: 10px;
+    font-size: 36px;
+    }
+    .fullsec{
+    margin-top: -95px;
+    width: 100%;
+    background: black;
+    height: 100vh;
+    font-size: 36px;
+    position: absolute;
+    }
+</style>
+
 <body>
-    <div class="container">
-        <input type="text" name="text" id="text" autocomplete="off" required>
-        <button id="OnAddBtn">ADD</button>
-        <button onclick="onDell()">DEL</button>
-        <ul id="list">
-            <h1 id="heading">TODO ITEM</h1>
-        </ul>
+<div class="container">
+    <div id="tasks">
+    <h1>TODO APP</h1>
+    <form id="taskForm">
+        <input type="text" name="taskText" id="taskText" placeholder="Task" autocomplete="off" required/>
+        <input type="submit" id="taskSubmit" value="Add task" />
+        <input type="button" id="buttonDelete" value="Delete" />
+    </form>
+    
     </div>
+</div>
     <script>
-            //input access by Id
-            var input = document.getElementById('text');
-            var addBtn = document.getElementById('OnAddBtn');
-                //get user input value
-                addBtn.addEventListener("click",function(){
-                    document.getElementById("heading").innerHTML="TODO ITEM";
-                    if(input.value != ""){
-                        userInput=input.value;
-                        var li = document.createElement('li');
-                        li.innerHTML=userInput;
-                        var btn = document.createElement('span');
-                        btn.innerHTML="DEL";
-                        li.append(btn)
-                        var list=document.getElementById('list');
-                        list.appendChild(li)
-                        input.value="";
+        //selected window and add eventlistener onLoad
+        window.addEventListener('load', () => {
+            // selected <form> by querySelector 
+            const form = document.querySelector("#taskForm");
+            // selected <input> by querySelector
+            const input = document.querySelector("#taskText");
+            // selected <Out> by querySelector
+            const output = document.querySelector("#tasks");
+            // selected <Out> by querySelector
+            const delteButton = document.querySelector("#buttonDelete");
+
+            //addEventListener on Form Submit 
+            form.addEventListener('submit', (stopingRefresh) => {
+                //onSubmit page always refresh so Using reserved function "preventDefault()" that not give permission to refresh page on submit
+                stopingRefresh.preventDefault();
+
+                //here creating a div Element 
+                const taskElements = document.createElement('div');
+                //giving class to Div
+                taskElements.class = 'task';
+
+                //here creating a div Element 
+                const contentElement = document.createElement('div');
+                //giving class to Div
+                contentElement.class = 'content';
+
+                //appending contentElement into taskElements
+                taskElements.appendChild(contentElement);
+
+
+                //getting input value as "const"
+                const taskIputs = input.value;
+
+                //here creating a input Element
+                const inputElement = document.createElement('input');
+                //giving class to input Element
+                inputElement.class = 'text';
+                //discribe the input type
+                inputElement.type = 'text';
+                //form input value assing to appended input
+                inputElement.value = taskIputs;
+
+                //setAttribute to appended input
+                inputElement.setAttribute('readonly', 'readonly');
+
+                //appending inputElement into a div "contentElement"
+                contentElement.appendChild(inputElement);
+
+                //here creating a div Element 
+                const taskAct = document.createElement('div');
+                //giving class to Div
+                taskAct.class = 'actions';
+
+                //here creating a button Element
+                const taskEdit = document.createElement('button');
+                //giving class to button
+                taskEdit.class = 'edit';
+                //set innerHTML to button
+                taskEdit.innerText = 'Edit';
+
+                //here creating a button Element
+                const taskDelete = document.createElement('button');
+                //giving class to button
+                taskDelete.classList.add('delete');
+                //set innerHTML to button
+                taskDelete.innerText = 'Delete';
+                //taskAct is a dive and appending buttons in it "taskEdit"
+                taskAct.appendChild(taskEdit);
+                //taskAct is a dive and appending buttons in it "taskDelete"
+                taskAct.appendChild(taskDelete);
+
+                //"taskElements" is a div and i am adding a div in it"taskAct/button/Edit & delete"    
+                taskElements.appendChild(taskAct);
+
+                // here showing output in / all append items show in "output"
+                output.appendChild(taskElements);
+                // after submit input value emputy
+                input.value = '';
+
+                // addEventListener onEveryButton TO "taskEdit" button
+                taskEdit.addEventListener('click', (e) => {
+                    // using if/else to add and remove attributes /edit&save
+                    if (taskEdit.innerText == "Edit") {
+                        taskEdit.innerText = "Save";
+                        //here removing "removeAttribute()" to "inputElement" 
+                        inputElement.removeAttribute("readonly");
+                        // adding class for styling
+                        taskElements.classList.add('fullsec')
+                        // adding class for styling
+                        inputElement.classList.add('editable')
+                        //using focus() for well visiabilty
+                        inputElement.focus();
+                    }else if(taskEdit.innerText == "Save"){
+                        taskEdit.innerText = "Edit";
+                        // removing class
+                        taskElements.classList.remove('fullsec')
+                        // removing class 
+                        inputElement.classList.remove('editable')
+                        inputElement.setAttribute("readonly", "readonly");
+                    } else {
+                        taskEdit.innerText = "Edit";
+                        //here set "setAttribute()" to "inputElement"
+                        inputElement.setAttribute("readonly", "readonly");
                     }
-                    var Ondelone = document.querySelectorAll("span");
-                    for (let i = 0; i < Ondelone.length; i++) {
-                        Ondelone[i].addEventListener("click", function(){
-                        Ondelone[i].parentElement.style.display="none";
-                })
-            }
+                });
+                // addEventListener onEveryButton TO "taskDelete" button
+                taskDelete.addEventListener('click', (e) => {
+                    //out put clear from append elements using "removeChild()"  
+                    output.removeChild(taskElements);
+                });
+
+                // addEventListener Delete Button to clear output
+                delteButton.addEventListener('click', (e) => {
+                    //out put clear from append elements using "removeChild()"  
+                    output.removeChild(taskElements);
+                });
+            });
+
         });
     </script>
-    <script>
-        function onDell() {
-            var removeAll = document.querySelectorAll("li");
-            for (let i = 0; i < removeAll.length; i++) {
-                removeAll[i].remove();
-            }  
-            document.getElementById("heading").innerHTML="LIST DELETED";
-        }
-    </script>
-      
 </body>
+
 </html>
