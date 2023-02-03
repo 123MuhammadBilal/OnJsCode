@@ -1,209 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TODO</title>
-</head>
-<style>
-    body{
-        background: black;
+  </head>
+  <style>
+    body {
+      background: black;
     }
-    body,html,h1,h2,h3,h4{
-        margin: 0px;
-        padding: 0px;
+    body,
+    html,
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 0px;
+      padding: 0px;
     }
+    form#taskForm {
+    border-bottom: 5px solid white;
+    padding-bottom: 12px;
+}
     input[type="text"]:focus {
-        -webkit-appearance: none;
-        border: 0px;
-        appearance: none;
-
+      -webkit-appearance: none;
+      border: 0px;
+      appearance: none;
     }
     input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        border: 0px;
-        appearance: none;
-        }
-    h1{
-    border-bottom: 3px solid;
-    font-size: 20px;
-    color: white;
-    padding: 10px;
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      border: 0px;
+      appearance: none;
+    }
+    h1 {
+      border-bottom: 3px solid;
+      font-size: 20px;
+      color: white;
+      padding: 10px;
     }
     input {
-    border-bottom: 3px inset  #fff;
-    margin-top: 10px;
-    font-size: 20px;
-    padding: 10px;
-    color: #fff;
-    background: black;
+      border-bottom: 3px inset #fff;
+      margin-top: 10px;
+      font-size: 20px;
+      padding: 10px;
+      color: #fff;
+      background: black;
     }
-    button{
-    border-bottom: 2px inset #fff;
-    font-size: 20px;
-    padding: 2px 13px;
-    color: #fff;
-    background: black;
-    margin: 10px 10px;
+    button {
+      border-bottom: 2px inset #fff;
+      font-size: 20px;
+      padding: 2px 13px;
+      color: #fff;
+      background: black;
+      margin: 10px 10px;
     }
     .container {
-    margin: 0 auto;
-    max-width: 100%;
-    text-align: center;
+      margin: 0 auto;
+      max-width: 100%;
+      text-align: center;
     }
-    .editable{
-    margin-top: 25%;
-    width: 80%;
-    height: 50px;
-    padding: 10px;
-    font-size: 36px;
+    .editable {
+      margin-top: 25%;
+      width: 80%;
+      height: 50px;
+      padding: 10px;
+      font-size: 36px;
     }
-    .fullsec{
-    margin-top: -95px;
-    width: 100%;
-    background: black;
-    height: 100vh;
-    font-size: 36px;
-    position: absolute;
+    .fullsec {
+      margin-top: -95px;
+      width: 100%;
+      background: black;
+      height: 100vh;
+      font-size: 36px;
+      position: absolute;
     }
-</style>
+  </style>
 
-<body>
-<div class="container">
-    <div id="tasks">
-    <h1>TODO APP</h1>
-    <form id="taskForm">
-        <input type="text" name="taskText" id="taskText" placeholder="Task" autocomplete="off" required/>
+  <body>
+    <div class="container">
+      <input
+        type="search"
+        name="search"
+        id="searchInput"
+        value="UNDER DEVELOPMENT"
+      />
+      <h1>TODO APP</h1>
+      <form id="taskForm">
+        <input
+          type="text" name="taskText" id="taskText" placeholder="Task" autocomplete="off" required/>
+        <p style="color: white;" id="sellect">Select All:<input type="checkbox" id="beforedel" /></p>
+
         <input type="submit" id="taskSubmit" value="Add task" />
         <input type="button" id="buttonDelete" value="Delete" />
-    </form>
-    
+      </form>
+      <div id="tasks" id="list"></div>
     </div>
-</div>
     <script>
-        //selected window and add eventlistener onLoad
-        window.addEventListener('load', () => {
-            // selected <form> by querySelector 
-            const form = document.querySelector("#taskForm");
-            // selected <input> by querySelector
-            const input = document.querySelector("#taskText");
-            // selected <Out> by querySelector
-            const output = document.querySelector("#tasks");
-            // selected <Out> by querySelector
-            const delteButton = document.querySelector("#buttonDelete");
+      //selected window and add eventlistener onLoad
+      window.addEventListener("load", () => {
+        // selected <form> by querySelector
+        const form = document.querySelector("#taskForm");
+        // selected <input> by querySelector
+        const input = document.querySelector("#taskText");
+        // selected <Out> by querySelector
+        const output = document.querySelector("#tasks");
+        // selected append checkbox by querySelector
+        const unCheck = document.querySelector("#unChecked");
+        // selected checkbox to delete all items
+        const boxes = document.getElementById("beforedel");
+        // selected <Out> by querySelector
+        const delteButton = document.querySelector("#buttonDelete");
 
-            //addEventListener on Form Submit 
-            form.addEventListener('submit', (stopingRefresh) => {
-                //onSubmit page always refresh so Using reserved function "preventDefault()" that not give permission to refresh page on submit
-                stopingRefresh.preventDefault();
+        const sellectAll = document.getElementById('sellect');
 
-                //here creating a div Element 
-                const taskElements = document.createElement('div');
-                //giving class to Div
-                taskElements.class = 'task';
+        //addEventListener on Form Submit
+        form.addEventListener("submit", (stopingRefresh) => {
+          //onSubmit page always refresh so Using reserved function "preventDefault()" that not give permission to refresh page on submit
+          stopingRefresh.preventDefault();
 
-                //here creating a div Element 
-                const contentElement = document.createElement('div');
-                //giving class to Div
-                contentElement.class = 'content';
+          //here creating a div Element
+          const taskElements = document.createElement("div");
+          //giving class to Div
+          taskElements.class = "task";
 
-                //appending contentElement into taskElements
-                taskElements.appendChild(contentElement);
+          //here creating a div Element
+          const contentElement = document.createElement("div");
+          //giving class to Div
+          contentElement.class = "content";
 
+          //here creating a div Element
+          const mybox = document.createElement("input");
+          //here giving type
+          mybox.type = "checkbox";
+          //here giving id
+          mybox.id = "unChecked";
 
-                //getting input value as "const"
-                const taskIputs = input.value;
+          //appending contentElement into taskElements
+          taskElements.appendChild(contentElement);
+          taskElements.appendChild(mybox);
 
-                //here creating a input Element
-                const inputElement = document.createElement('input');
-                //giving class to input Element
-                inputElement.class = 'text';
-                //discribe the input type
-                inputElement.type = 'text';
-                //form input value assing to appended input
-                inputElement.value = taskIputs;
+          //getting input value as "const"
+          const taskIputs = input.value;
 
-                //setAttribute to appended input
-                inputElement.setAttribute('readonly', 'readonly');
+          //here creating a input Element
+          const inputElement = document.createElement("input");
+          //giving class to input Element
+          inputElement.class = "text";
+          //discribe the input type
+          inputElement.type = "text";
+          //form input value assing to appended input
+          inputElement.value = taskIputs;
 
-                //appending inputElement into a div "contentElement"
-                contentElement.appendChild(inputElement);
+          //setAttribute to appended input
+          inputElement.setAttribute("readonly", "readonly");
 
-                //here creating a div Element 
-                const taskAct = document.createElement('div');
-                //giving class to Div
-                taskAct.class = 'actions';
+          //appending inputElement into a div "contentElement"
+          contentElement.appendChild(inputElement);
 
-                //here creating a button Element
-                const taskEdit = document.createElement('button');
-                //giving class to button
-                taskEdit.class = 'edit';
-                //set innerHTML to button
-                taskEdit.innerText = 'Edit';
+          //here creating a div Element
+          const taskAct = document.createElement("div");
+          //giving class to Div
+          taskAct.class = "actions";
 
-                //here creating a button Element
-                const taskDelete = document.createElement('button');
-                //giving class to button
-                taskDelete.classList.add('delete');
-                //set innerHTML to button
-                taskDelete.innerText = 'Delete';
-                //taskAct is a dive and appending buttons in it "taskEdit"
-                taskAct.appendChild(taskEdit);
-                //taskAct is a dive and appending buttons in it "taskDelete"
-                taskAct.appendChild(taskDelete);
+          //here creating a button Element
+          const taskEdit = document.createElement("button");
+          //giving class to button
+          taskEdit.class = "edit";
+          //set innerHTML to button
+          taskEdit.innerText = "Edit";
 
-                //"taskElements" is a div and i am adding a div in it"taskAct/button/Edit & delete"    
-                taskElements.appendChild(taskAct);
+          //here creating a button Element
+          const taskDelete = document.createElement("button");
+          //giving class to button
+          taskDelete.classList.add("delete");
+          //set innerHTML to button
+          taskDelete.innerText = "Delete";
+          //taskAct is a dive and appending buttons in it "taskEdit"
+          taskAct.appendChild(taskEdit);
+          //taskAct is a dive and appending buttons in it "taskDelete"
+          taskAct.appendChild(taskDelete);
 
-                // here showing output in / all append items show in "output"
-                output.appendChild(taskElements);
-                // after submit input value emputy
-                input.value = '';
+          //"taskElements" is a div and i am adding a div in it"taskAct/button/Edit & delete"
+          taskElements.appendChild(taskAct);
 
-                // addEventListener onEveryButton TO "taskEdit" button
-                taskEdit.addEventListener('click', (e) => {
-                    // using if/else to add and remove attributes /edit&save
-                    if (taskEdit.innerText == "Edit") {
-                        taskEdit.innerText = "Save";
-                        //here removing "removeAttribute()" to "inputElement" 
-                        inputElement.removeAttribute("readonly");
-                        // adding class for styling
-                        taskElements.classList.add('fullsec')
-                        // adding class for styling
-                        inputElement.classList.add('editable')
-                        //using focus() for well visiabilty
-                        inputElement.focus();
-                    }else if(taskEdit.innerText == "Save"){
-                        taskEdit.innerText = "Edit";
-                        // removing class
-                        taskElements.classList.remove('fullsec')
-                        // removing class 
-                        inputElement.classList.remove('editable')
-                        inputElement.setAttribute("readonly", "readonly");
-                    } else {
-                        taskEdit.innerText = "Edit";
-                        //here set "setAttribute()" to "inputElement"
-                        inputElement.setAttribute("readonly", "readonly");
-                    }
-                });
-                // addEventListener onEveryButton TO "taskDelete" button
-                taskDelete.addEventListener('click', (e) => {
-                    //out put clear from append elements using "removeChild()"  
-                    output.removeChild(taskElements);
-                });
+          // here showing output in / all append items show in "output"
+          output.appendChild(taskElements);
+          // after submit input value emputy
+          input.value = "";
 
-                // addEventListener Delete Button to clear output
-                delteButton.addEventListener('click', (e) => {
-                    //out put clear from append elements using "removeChild()"  
-                    output.removeChild(taskElements);
-                });
+          // addEventListener onEveryButton TO "taskEdit" button
+          taskEdit.addEventListener("click", (e) => {
+            // using if/else to add and remove attributes /edit&save
+            if (taskEdit.innerText == "Edit") {
+              taskEdit.innerText = "Save";
+              //here removing "removeAttribute()" to "inputElement"
+              inputElement.removeAttribute("readonly");
+              // adding class for styling
+              taskElements.classList.add("fullsec");
+              // adding class for styling
+              inputElement.classList.add("editable");
+              //using focus() for well visiabilty
+              inputElement.focus();
+            } else if (taskEdit.innerText == "Save") {
+              taskEdit.innerText = "Edit";
+              // removing class
+              taskElements.classList.remove("fullsec");
+              // removing class
+              inputElement.classList.remove("editable");
+              inputElement.setAttribute("readonly", "readonly");
+            } else {
+              taskEdit.innerText = "Edit";
+              //here set "setAttribute()" to "inputElement"
+              inputElement.setAttribute("readonly", "readonly");
+            }
+          });
+          // addEventListener onEveryButton TO "taskDelete" button
+          taskDelete.addEventListener("click", (e) => {
+            if (mybox.checked) {
+              //out put clear from append elements using "removeChild()"
+              output.removeChild(taskElements);
+            } else {
+              alert("please check it first");
+            }
+          });
+          // addEventListener when i click sellect all auto Checked All checkbox
+          boxes.addEventListener("click", function () {
+                // Check All checkbox
+                mybox.checked
             });
-
+          // addEventListener Delete Button to clear output
+          delteButton.addEventListener("click", (e) => {
+            if (!boxes.checked) {
+                sellectAll.style.color = "red";
+            } else {
+                sellectAll.style.color="white";
+                //out put clear from append elements using "removeChild()"
+                output.removeChild(taskElements);
+            }
+          });
         });
+      });
     </script>
-</body>
-
+  </body>
 </html>
