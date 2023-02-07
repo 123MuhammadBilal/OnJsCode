@@ -54,6 +54,11 @@
             width: 140px;
             float: left;
         }
+        input#search {
+            padding: 10px 5px;
+            width: 400px;
+            float: left;
+        }
 
         input#deletebutton {
             padding: 10px 5px;
@@ -88,6 +93,7 @@
 
 <body>
     <div class="container">
+        <input type="search" name="search" id="search" placeholder="Fitter Seach">
         <form id="taskForm">
             <input type="text" name="text" id="inputText" autocomplete="off" required />
             <input type="submit" id="submit">
@@ -143,8 +149,6 @@
                 li.appendChild(delBtn);
                 //appending "edit btn" in list
                 li.appendChild(edtBtn);
-
-
                 // deleteAll <li> from
                 deleteAll.addEventListener('click', () => {
                     outputChild.removeChild(li);
@@ -157,14 +161,15 @@
                     if (checkBox.checked) {
                         outputChild.removeChild(li);
                     } else {
-                        alert('please Select');
+                        alert('please check before delete');
                     }
 
                 })
                 let saveButtonAppended = false;
                 //addEventListener on "EDIT" button
                 edtBtn.addEventListener('click', () => {
-                    // using if/else to add restrictions to edit one Item at onces
+                    if (checkBox.checked) {
+                                            // using if/else to add restrictions to edit one Item at onces
                     if (input.value != "") {
                         alert('| SAVE |\n Before Edit other')
                     } else {
@@ -175,18 +180,43 @@
                         saveme.innerHTML = "SAVE"
                         // using id for styling
                         saveme.id = "SAVE";
+                        //hidding 'ADD' button 
+                        btn.style.display="none"
                         form.appendChild(saveme);
                         saveme.addEventListener('click', () => {
                             p.innerHTML = input.value;
                             form.removeChild(saveme);
                             input.value = "";
+                            btn.style.display="block"
                         })
                     }
+                    } else {
+                        alert('please check before edite')
+                    }
+
 
 
                 })
             })
 
+        });
+    </script>
+    <!-- seach filter  -->
+    <script>
+        const input = document.getElementById("search");
+        const list = document.getElementById("list");
+        const items = list.getElementsByTagName("li");
+        input.addEventListener("keyup", function () {
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i];
+                const text = item.textContent || item.innerText;
+
+                if (text.toLowerCase().indexOf(input.value.toLowerCase()) > -1) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            }
         });
     </script>
 </body>
