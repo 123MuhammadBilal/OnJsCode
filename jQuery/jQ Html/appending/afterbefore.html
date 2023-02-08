@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#justappend1").click(function(){
+    $("#justappendpara1").append(" <b>Appended text</b>.");
+  });
+
+  $("#justappend2").click(function(){
+    $("#justappendul1").append("<li>Appended item</li>");
+  });
+});
+</script>
+<script>
+$(document).ready(function(){
+  $("#justpreappend1").click(function(){
+    $("#justpreappendpara1").prepend(" <b>Appended text</b>.");
+  });
+
+  $("#justpreappend2").click(function(){
+    $("#justpreappendul1").prepend("<li>Appended item</li>");
+  });
+});
+</script>
+
+<script>
+$(document).ready(function(){
+  $("#before").click(function(){
+    $("img").before("<b>Before</b>");
+  });
+
+  $("#after").click(function(){
+    $("img").after("<b>After</b>");
+  });
+});
+</script>
+
+</head>
+<body>
+<img src="/images/w3jquery.gif" alt="jQuery" width="100" height="140"><br><br>
+
+<button id="before">Insert before</button>
+<button id="after">Insert after</button>
+
+
+<p id="justpreappendpara1">This is a paragraph.</p>
+<button id="justpreappend1">prepend text</button>
+<button id="justpreappend2">prepend list items</button>
+<ul id="justpreappendul1">
+  <li>List item 1</li>
+</ul>
+
+<p id="justappendpara1">This is a paragraph.</p>
+<button id="justappend1">Append text</button>
+<button id="justappend2">Append list items</button>
+<ul id="justappendul1">
+  <li>List item 1</li>
+</ul>
+</body>
+</html>
