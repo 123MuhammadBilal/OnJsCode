@@ -169,7 +169,7 @@
                 //addEventListener on "EDIT" button
                 edtBtn.addEventListener('click', () => {
                     if (checkBox.checked) {
-                                            // using if/else to add restrictions to edit one Item at onces
+                // using if/else to add restrictions to edit one Item at onces
                     if (input.value != "") {
                         alert('| SAVE |\n Before Edit other')
                     } else {
@@ -194,8 +194,6 @@
                         alert('please check before edite')
                     }
 
-
-
                 })
             })
 
@@ -203,10 +201,15 @@
     </script>
     <!-- seach filter  -->
     <script>
+        //seach input
         const input = document.getElementById("search");
+        // "list" is id of "ul"
         const list = document.getElementById("list");
+        // select "li" fom list="ul"
         const items = list.getElementsByTagName("li");
+        
         input.addEventListener("keyup", function () {
+            // debugger
             for (let i = 0; i < items.length; i++) {
                 const item = items[i];
                 const text = item.textContent || item.innerText;
@@ -219,6 +222,36 @@
             }
         });
     </script>
+    <!-- <script>
+        //getting input
+        // error when i use "addEventListener" i cant use ".value.toUpperCase()"but why i think coz getting just value in to upperCase thats reason i cant use input.addEventListener
+        var input = document.getElementById('search');
+        // "list" is id of "ul"
+        const list = document.getElementById("list");
+        //getting list
+        //why i cant use ".innerText.toUpperCase()" & ".innerHTML.toUpperCase()" why cant readproperties
+        var li =list.getElementsByTagName("li");
+        //addEventListener
+        input.addEventListener('keyup',function(){
+            for (let i = 0; i < li.length; i++) {
+                const list = li[i];
+                const text = li.textContent || li.innerText;
+                // on console its showing just 'li' not [i]  (li[i]) find the reason
+                // console.log(input.value);
+                // console.log(list);
+                if (text.toLowerCase().indexOf(input.value.toLowerCase()) > -1) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+               }
+            
+
+                
+            }
+        })
+
+        
+    </script> -->
 </body>
 
 </html>
