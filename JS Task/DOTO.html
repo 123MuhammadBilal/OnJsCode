@@ -27,11 +27,13 @@
         h1 {
             color: black;
         }
-        .blocking{
-        background: black;
-        color: red;
-        text-decoration: line-through 4px solid black;
-            }
+
+        .blocking {
+            background: black;
+            color: red;
+            text-decoration: line-through 4px solid black;
+        }
+
         li {
             cursor: pointer;
             font-size: 19px;
@@ -59,6 +61,7 @@
             width: 140px;
             float: left;
         }
+
         input#search {
             padding: 10px 5px;
             width: 400px;
@@ -174,36 +177,37 @@
                 //addEventListener on "EDIT" button
                 edtBtn.addEventListener('click', () => {
                     if (checkBox.checked) {
-                // using if/else to add restrictions to edit one Item at onces
-                    if (input.value != "") {
-                        alert('| SAVE |\n Before Edit other')
-                    } else {
-                        // getting list text into input
-                        input.value = p.innerHTML;
-                        //append button to save editable element
-                        const saveme = document.createElement('button');
-                        saveme.innerHTML = "SAVE"
-                        // using id for styling
-                        saveme.id = "SAVE";
-                        //hidding 'ADD' button 
-                        btn.style.display="none"
-                        form.appendChild(saveme);
-                        saveme.addEventListener('click', () => {
-                            p.innerHTML = input.value;
-                            form.removeChild(saveme);
-                            input.value = "";
-                            btn.style.display="block"
-                        })
-                    }
+                        // using if/else to add restrictions to edit one Item at onces
+                        if (input.value != "") {
+                            alert('| SAVE |\n Before Edit other')
+                        } else {
+                            // getting list text into input
+                            input.value = p.innerHTML;
+                            //append button to save editable element
+                            const saveme = document.createElement('button');
+                            saveme.innerHTML = "SAVE"
+                            // using id for styling
+                            saveme.id = "SAVE";
+                            //hidding 'ADD' button 
+                            btn.style.display = "none"
+                            form.appendChild(saveme);
+                            saveme.addEventListener('click', () => {
+                                p.innerHTML = input.value;
+                                form.removeChild(saveme);
+                                input.value = "";
+                                btn.style.display = "block"
+                            })
+                        }
                     } else {
                         alert('please check before edite')
                     }
 
                 })
-                li.addEventListener('click', ()=>{
-            p.classList.toggle('blocking');
-            
-        })
+                //showing tap on li
+                p.addEventListener('click', () => {
+                    li.classList.toggle('blocking');
+
+                })
             })
 
         });
@@ -216,7 +220,7 @@
         const list = document.getElementById("list");
         // select "li" fom list="ul"
         const items = list.getElementsByTagName("li");
-        
+
         input.addEventListener("keyup", function () {
             // debugger
             for (let i = 0; i < items.length; i++) {
