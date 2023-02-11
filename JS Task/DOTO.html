@@ -27,8 +27,13 @@
         h1 {
             color: black;
         }
-
+        .blocking{
+        background: black;
+        color: red;
+        text-decoration: line-through 4px solid black;
+            }
         li {
+            cursor: pointer;
             font-size: 19px;
             text-align: initial;
             list-style-type: none;
@@ -195,6 +200,10 @@
                     }
 
                 })
+                li.addEventListener('click', ()=>{
+            p.classList.toggle('blocking');
+            
+        })
             })
 
         });
