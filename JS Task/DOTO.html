@@ -220,16 +220,25 @@
         const list = document.getElementById("list");
         // select "li" fom list="ul"
         const items = list.getElementsByTagName("li");
-
+        //addEventListener "keyup"
         input.addEventListener("keyup", function () {
             // debugger
+            // using forloop to get all "li" innerText
             for (let i = 0; i < items.length; i++) {
+                //'li' items get in list 
                 const item = items[i];
+                // console.log(item)
+                //get the innerText of "li"
                 const text = item.textContent || item.innerText;
-
+                // console.log(text)
+                // debugger
+                //match that which list item have "input.value" using "indexOf()"
+                //if lenght of 'input' have lenght then ' -1 < input.value ' and its show just matched item
                 if (text.toLowerCase().indexOf(input.value.toLowerCase()) > -1) {
+                    //show matching items
                     item.style.display = "block";
                 } else {
+                    //the items that will not  match with "indexOf(input.value)" will hide
                     item.style.display = "none";
                 }
             }
