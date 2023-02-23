@@ -12,7 +12,7 @@
         }
     li{
         list-style-type: numaric;
-        display: none;
+        
     }
     .show{
         display: block;
@@ -38,31 +38,31 @@
         </ul>
     </div>
     <div class="pagination">
-        <button id="first">FIRST</button><br><button id="perv">PEREVIOUS</button><br><button id="next">NEXT</button><br><button id="last">LAST</button>
+        <button id="first">FIRST</button><br>
+        <button id="prev">PEREV</button><br>
+        <button id="next">NEXT</button><br>
+        <button id="last">LAST</button><br>
     </div>
     <script>
         var firstpage=1;
         var list=document.getElementById('list');
         var item =list.getElementsByTagName("li");
-        var first =document.getElementById('first');
-        var last =document.getElementById('last');
-        first.addEventListener('click',()=>{
-            for (let i = 0; i < 10; i++) {
-            const element = item[i];
-            element.classList.add('show');
-        }
-    }) 
-    last.addEventListener('click', () => {
-        element.classList.add('show');
-        // Loop through the list items in reverse order
-  for (let i = item.length - 1; i >= 0; i--) {
-    const element = item[i];
-    if (i >= item.length - 3) {
-      // If the item is one of the last 10, print it
-      element.classList.add('show');
-    }
-  }
-});
+        var firstPage =document.getElementById('first');
+        var previousPage =document.getElementById('prev');
+        var nextPage =document.getElementById('next');
+        var lastPage =document.getElementById('last');
+        firstPage.addEventListener('click',()=>{
+            alert('page first')
+        })
+        previousPage.addEventListener('click',()=>{
+            alert('page previous')
+        })
+        nextPage.addEventListener('click',()=>{
+            alert('page next')
+        })
+        lastPage.addEventListener('click',()=>{
+            alert('page last')
+        })
     </script>
 </body>
 </html>
