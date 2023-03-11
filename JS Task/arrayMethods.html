@@ -1,0 +1,138 @@
+<script>
+    console.log("____________________ARRY METHODS_____________________")
+
+    console.log("//using for loop \n //const myFav=['Hydrogen', 'Helium','Oxygen', 'Uranium','Nitrogen'];")
+
+    const myFav=['Hydrogen', 'Helium','Oxygen', 'Uranium','Nitrogen'];
+    // using for loop
+    for (let i = 0; i < myFav.length; i++) {
+        console.log(myFav[i]);  
+    }
+
+console.log("\n\n\n_______________________________________________\n______________________________________________________________________________________________\n\n\n")
+
+
+
+    console.log("//USING PARAMITERS `VALUE` , `INDEX`  IN forEach Loop \n //const myFav=['Hydrogen', 'Helium','Oxygen', 'Uranium','Nitrogen'];")
+
+    // using forEach Loop
+    myFav.forEach((languages,index) => {
+        console.log(index+" "+languages);
+    });
+
+
+    console.log("\n\n\n_______________________________________________\n______________________________________________________________________________________________\n\n\n")
+
+
+
+    console.log("//USING PARAMITERS `VALUE` , `INDEX` , `ARR` IN forEach Loop \n //const newArr = [10,20,30,40,50];")
+
+    // using forEach Loop
+    const newArr = [10,20,30,40,50]
+    newArr.forEach((val,ind,arr) => {
+        console.log(arr[ind]+100)
+    });
+
+    console.log("\n\n\n_______________________________________________\n______________________________________________________________________________________________\n\n\n")
+
+
+    //using indexOf()
+    console.log("//find index of 'Polonium")
+    console.log("//SEARCH AND FILLTER IN ARRY & its case senstive  \n FOR SEACH METHODE WE USE indexOf() \n var myData = ['Hydrogen', 'Helium','Oxygen', 'Uranium','Nitrogen'];")
+    
+    var myData = ['Hydrogen', 'Helium','Oxygen', 'Uranium','Nitrogen']
+    var heliumIndex = myData.indexOf('Helium');
+    console.log(heliumIndex);
+
+    console.log("\n\n\n_______________________________________________\n______________________________________________________________________________________________\n\n\n")
+
+    // using includes() methode
+    console.log("//using includes() methode & its case senstive check the existance if item is in arry its return(true)  else  return(false) )\n var myData = ['javaScripy','Node','React','jQuery'];" ); 
+    console.log(myData.includes("jQuery"));
+    console.log(' ')
+
+    console.log("\n\n\n_______________________________________________\n______________________________________________________________________________________________\n\n\n")
+
+    //using find() methode 
+    //return just one value
+    // return undefined
+    console.log("using find() methode \n const prices = [100,200,300,400,500,100];")
+    const prices = [100,200,300,400,500,];
+    const findPrice = prices.find((priceVal)=>{
+        return priceVal < 500;
+    });
+    console.log(findPrice);
+
+    console.log("\n\n\n_______________________________________________\n______________________________________________________________________________________________\n\n\n")
+
+    //using findIdex() methode 
+    //return index no
+    // return -1
+    console.log("using findIndex() methode \n const prices = [100,200,300,400,500,100];")
+    const pricess = [100,200,300,400,500,];
+    const findPricee = pricess.findIndex((priceVall)=>{
+        return priceVall < 5000;
+    });
+    console.log(findPricee);
+
+    console.log("\n\n\n_______________________________________________\n______________________________________________________________________________________________\n\n\n")
+
+
+    //using filter() methode 
+    //return value and index
+    // return [emputy arry]
+    console.log("using filter() methode \n priceVals = [100,200,300,400,500,];")
+    const priceVals = [100,200,300,400,500,];
+    const valTags = priceVals.filter((tags , indx)=>{
+        return tags > 400;
+    });
+    console.log(valTags);
+
+    console.log("\n\n\n_______________________________________________\n______________________________________________________________________________________________\n\n\n")
+
+    //using sort() methode 
+    //return arry in a alphabetical order
+    console.log("using filter() methode \n alphabet = ['e','a','c','b','d'];")
+    const alphabet = ['e','a','c','b','d'];
+    console.log(alphabet.sort());
+
+    console.log("\n\n\n_______________________________________________\n______________________________________________________________________________________________\n\n\n")
+
+    //using sort() methode in intiger 
+    //return arry in a alphabetical order
+    console.log("using filter() methode \n alphabet = ['e','a','c','b','d'];")
+    const nos = ['1','10','01','22','20'];
+    console.log(nos.sort());
+
+
+
+    console.log("\n\n\n_______________________________________________\n______________________________________________________________________________________________\n\n\n")
+
+    // Differentiate between some
+    // and every. Differentiate
+    // between forEach and map.
+
+    console.log('Differentiate between some and every Differentiate between forEach and map');
+    // some()
+    //return false if condition not match
+    console.log('// some() \n //return false if condition not match')
+    const ages = [12, 16, 10, 20, 18];
+    const adultAge = 18;
+    const ageCon = ages.some((val) => {
+    return val >= adultAge;
+    });
+    console.log(ageCon);
+
+
+        // evert()
+    //return false if condition not match
+    console.log('// some() \n //return false untill all condition not match & it will check all values in array')
+    const agesx = [12, 16, 10, 20, 18];
+    const adultAgex = 18;
+    const ageConx = agesx.every((valx) => {
+    return valx >= adultAgex;
+    });
+    console.log(ageConx);
+
+
+</script>

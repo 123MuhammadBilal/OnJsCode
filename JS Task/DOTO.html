@@ -234,9 +234,11 @@
                 // debugger
                 //match that which list item have "input.value" using "indexOf()"
                 //if lenght of 'input' have lenght then ' -1 < input.value ' and its show just matched item
-                if (text.toLowerCase().indexOf(input.value.toLowerCase()) > -1) {
+                if (text.toLowerCase().indexOf(input.value.toLowerCase()) > -1 ) {
+                    //in .indexOf methode when item unable to find its return the -1 
                     //show matching items
                     item.style.display = "block";
+
                 } else {
                     //the items that will not  match with "indexOf(input.value)" will hide
                     item.style.display = "none";
