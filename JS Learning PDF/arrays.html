@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+    <style>
+        body{
+            background-color: gray;
+            font-size: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- For loop and ForEach Loop -->
+    <script>
+        console.log('<!-- For loop and ForEach Loop -->');
+
+        var elements = ['Hydrogen', 'Helium', 'Oxygen', 'Uranium', 'Nitrogen']
+
+        console.log('<!-- For loop -->');
+
+        for (let i = 0; i < elements.length; i++) {
+            console.log(elements[i]);
+        }
+
+        console.log('<!-- forEach loop -->'); 
+        var foreach = elements.forEach(element => {
+            console.log(element);
+        });
+    </script>
+
+
+
+    <!-- Create a list of even numbers -->
+    <script>
+        console.log('<!-- Create a list of even numbers -->');
+        
+        let evenNumbers = [];
+        for (let i = 0; i <= 20; i += 2) {
+            evenNumbers.push(i);
+        }
+        console.log(evenNumbers);
+    </script>
+
+    <!-- Find the index of element 'Oxygen' -->
+    <!-- if there is element so indexOf return -1 -->
+    <script>
+            console.log("<!-- Find the index of element 'Oxygen' -->");
+
+        var findIndex = ['Hydrogen', 'Helium', 'Oxygen', 'Uranium', 'Nitrogen']
+        var result1 = findIndex.indexOf('Oxygen');
+        console.log(result1);
+    </script>
+
+    <!-- Filter elements that have length less than 7 -->
+    <script>
+        console.log('<!-- Filter elements that have length less than 7 -->');
+
+        var elements = ['Hydrogen', 'Helium', 'Oxygen', 'Uranium', 'Nitrogen'];
+        var filteredElements = elements.filter((element)=>{
+            return element.length < 7;
+        });
+        console.log(filteredElements);
+    </script>
+
+
+
+    <!-- Map the word 'Element-' with each element. -->
+    <script>
+        console.log("<!-- Map the word 'Element-' with each element. -->")
+        
+        const numbers = ['Hydrogen', 'Helium','Oxygen', 'Uranium','Nitrogen']
+        var mappedElements = numbers.map((item)=>{
+        return'Element-' + item;
+        })
+        console.log(mappedElements);
+    </script>
+
+
+
+    <!-- Check if element 'Radium' exists in the array. -->
+    <script>
+    console.log("<!-- Check if element 'Radium' exists in the array. -->")
+    const exists = ['Hydrogen', 'Helium', 'Lithium', 'Beryllium', 'Radium'];
+    if (exists.includes('Radium')) {
+        console.log('Radium exists in the array.');
+    } else {
+        console.log('Radium does not exist in the array.');
+    }
+    </script>
+
+
+
+    <!-- Describe returns values for find, some, filter, findIndex if conditions do not match -->
+    <br>some: method will check if at least one element in the array meets the given condition.
+    <br>find: find() use to find element in a array and its return first element according to condition
+    <br>filter: filter() use to find element in a array and its return all same elements according to condtion
+    <br>findIndex: findIndex() exicute for every array alement and find element if item not its return -1 
+
+
+    <br>find(): It returns undefined 
+    <br>some(): It returns false 
+    <br>filter(): It returns an empty array 
+    <br>findIndex(): It returns -1 
+
+
+    <!-- Differentiate between some and every. -->
+    <!-- The some and every methods are used to check the conditions of elements in an array. -->
+    <br>some(): method will check if at least one element in the array meets the given condition. It returns a boolean value true if the condition is met for at least one element, otherwise false.
+    <br>every(): method, on the other hand, checks if all elements in the array meet the given condition. It returns a boolean value true if the condition is met for all elements, otherwise false.
+
+
+
+
+
+    <!-- forEach() and map() are both methods used to iterate over arrays in JavaScript, but they have some differences: -->
+    <br>The forEach() method is used to execute a function on each element of an array, without creating a new array. 
+    <br>The map() method is also used to execute a function on each element of an array, but it creates a new array with the results of the function calls. 
+
+                                        <!-- local storage -->
+    local storage and its methods
+    setItem(key , value)
+    getItem(key)
+    removeItem(key)
+    clear()
+
+
+    <br>Difference between local and session storage
+    <br>localStorage: stay data in localstorage untill we not delete it
+    <br>sessionStorage: data delete when we close the browser
+
+    <!-- Store and retrieve an array in local storage -->
+    <script>
+        console.log('Store and retrieve an array in local storage');
+
+        
+        console.log('<!-- local storage -->');
+        const skills = ['react','node','native'];
+        localStorage.setItem('languages', JSON.stringify(skills));
+        const storedArray = JSON.parse(localStorage.getItem('languages'));
+        console.log(storedArray);
+        document.write('<br><br>'+storedArray);
+
+    </script>    
+
+</body>
+</html>

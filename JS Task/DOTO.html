@@ -120,15 +120,15 @@
             // selected <form> 
             const form = document.querySelector("#taskForm");
             //select for output
-            const outputChild = document.getElementById('list');
+            const outputChild = document.getElementById('appendTrainer');
             //select DELET BUTTON
             const deleteAll = document.querySelector("#deletebutton");
             //select DELET BUTTON
             const btn = document.getElementById("submit");
             btn.value = "ADD";
-            form.addEventListener("submit", (stopingRefresh) => {
+            form.addEventListener("submit", (refresh) => {
                 //stop to refresh page on submit
-                stopingRefresh.preventDefault();
+                refresh.preventDefault();
                 //creating <li>
                 const li = document.createElement('li');
                 //creating <p>
@@ -217,25 +217,28 @@
         //seach input
         const input = document.getElementById("search");
         // "list" is id of "ul"
-        const list = document.getElementById("list");
+        const list = document.getElementById("appendTrainer");
         // select "li" fom list="ul"
         const items = list.getElementsByTagName("li");
         //addEventListener "keyup"
         input.addEventListener("keyup", function () {
             // debugger
             // using forloop to get all "li" innerText
-            for (let i = 0; i < items.length; i++) {
+            //item.length is <li> len
+            for (let i = 0; i < items.length; i++) {  
                 //'li' items get in list 
                 const item = items[i];
                 // console.log(item)
                 //get the innerText of "li"
                 const text = item.textContent || item.innerText;
-                // console.log(text)
+                console.log(text)
                 // debugger
-                //match that which list item have "input.value" using "indexOf()"
-                //if lenght of 'input' have lenght then ' -1 < input.value ' and its show just matched item
+                //match that which list item have "input.value"
+                // using "indexOf()"
+                //if lenght of 'input' have not item then it return always' -1
+                //else it show matched list item with 'input.value ' 
                 if (text.toLowerCase().indexOf(input.value.toLowerCase()) > -1 ) {
-                    //in .indexOf methode when item unable to find its return the -1 
+                    //in .indexOf arrays methode when item unable to find its return the -1 
                     //show matching items
                     item.style.display = "block";
 

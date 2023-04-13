@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <select id="status-dropdown">
+      <option value="all">All</option>
+      <option value="completed">Completed</option>
+      <option value="uncompleted">Uncompleted</option>
+    </select>
+
+    <ul id="task-list">
+      <li>Task 1 - Completed</li>
+      <li>Task 2 - Uncompleted</li>
+      <li>Task 3 - Completed</li>
+      <li>Task 4 - Uncompleted</li>
+    </ul>
+
+    <script>
+      const dropdown = document.getElementById("status-dropdown");
+      const taskList = document.getElementById("task-list");
+
+      dropdown.addEventListener("change", () => {
+        const selectedValue = dropdown.value;
+
+        // Clear all list items
+        while (taskList.firstChild) {
+          taskList.removeChild(taskList.firstChild);
+        }
+
+        // Display relevant results based on selected value
+        switch (selectedValue) {
+          case "all":
+            displayTasks("All");
+            break;
+          case "completed":
+            displayTasks("Completed");
+            break;
+          case "uncompleted":
+            displayTasks("Uncompleted");
+            break;
+        }
+      });
+
+        // Display tasks based on the selected value
+      function displayTasks(status) {
+        for (let i = 0; i < tasks.length; i++) {
+          const task = tasks[i];
+
+          // Check if task matches the selected status
+          if (status === "All" || task.status === status) {
+            const listItem = document.createElement("li");
+            listItem.textContent = `${task.name} - ${task.status}`;
+            taskList.appendChild(listItem);
+          }
+        }
+      }
+
+      // Sample tasks data
+      const tasks = [
+        { name: "Task 1", status: "Completed" },
+        { name: "Task 2", status: "Uncompleted" },
+        { name: "Task 3", status: "Completed" },
+        { name: "Task 4", status: "Uncompleted" },
+      ];
+    </script>
+  </body>
+</html>
