@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="icon" type="image/x-icon" href="img/icon.ico">
+	<title>TO DO APP</title>
+</head>
+<body class="" id="them">
+<div class="counterBg">
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <br>
+    <a onclick="alert(localStorage.getItem('Devloper'))" href="#">ABOUT</a>
+  <br>
+  <a onclick="them()"href="#">THEM</a>
+  <br>
+  <a href="https://www.facebook.com/SycoFBuser/">CONTACT</a>
+  <br>
+  <a onclick="alert('UNDER DEVELOPMENT');" href="#">Services</a>
+</div>
+<span class="navuser" onclick="openNav()">&#9776;</span>
+
+	<div class="container">
+    <input type="search" placeholder="search" name="text" id="searching" autocomplete="off" required />
+		<form id="myForm">
+            <input type="button" id="mainDelBtn" value="DELL" placeholder="task">
+			<input type="text" name="text" id="inputText" autocomplete="off" required />
+            <input type="submit" id="submitBtn" value="add" onclick="soundOnAdd()">
+        </form>
+        <output>
+            <ul id="UL_LIST">
+
+            </ul>
+        </output>
+	</div>
+</div>
+</div>
+<audio style="display:none" id="audio" src="dell.mp3"></audio>
+<audio style="display:none" id="audios" src="add.mp3"></audio>
+<script src="js/todo.js"></script>
+<script src="js/navigation.js"></script>
+
+</body>
+</html>

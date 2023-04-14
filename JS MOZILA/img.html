@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>img</title>
+</head>
+<body>
+    <img src="" alt="img">
+    <script>
+        const myImage = document.querySelector("img");
+
+myImage.onclick = () => {
+  const mySrc = myImage.getAttribute("src");
+  if (mySrc === "images/beeds.jpg") {
+    myImage.setAttribute("src", "images/beeds.jpg");
+  } else {
+    myImage.setAttribute("src", "images/beeds.jpg");
+  }
+};
+</script>
+</body>
+</html>

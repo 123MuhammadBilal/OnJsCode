@@ -11,6 +11,14 @@
             background-color: gray;
             font-size: 25px;
         }
+        .mycookies{
+            width: 200px;
+            height: 200px;
+            right: 0;
+            bottom: 0;
+            position: fixed;
+            background-color: gray;
+        }
     </style>
 </head>
 
@@ -146,7 +154,39 @@
         console.log(storedArray);
         document.write('<br><br>'+storedArray);
 
-    </script>    
+    </script>
+
+
+    
+    <div id="mycookies">
+        <button id="accept">Accept</button>
+        <button id="decline">Decline</button>
+    </div>
+    <button id="deleteCookies">Delete Cookies</button>
+    <script>
+       const accept = document.getElementById('accept');
+       const decline = document.getElementById('decline');
+       const mycookies = document.getElementById('mycookies');
+       const deleteCookies = document.getElementById('deleteCookies');
+       deleteCookies
+        accept.addEventListener('click',()=>{
+            document.cookie = acceptCookies=true;
+            mycookies.style.display="none";
+        });
+        decline.addEventListener('click',()=>{
+                mycookies.style.display="none";
+        });
+        if (document.cookie = acceptCookies=true) {
+                mycookies.style.display="none";
+            }else{
+                mycookies.style.display="none";
+            }
+            deleteCookies.addEventListener('click', () => {
+                alert('clicked');
+            document.cookie = `acceptCookies=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        });
+
+    </script>
 
 </body>
 </html>
