@@ -82,15 +82,6 @@ window.addEventListener('load',()=>{
                 
             }
         });
-
-
-
-
-
-
-
-
-
     })
 
 });

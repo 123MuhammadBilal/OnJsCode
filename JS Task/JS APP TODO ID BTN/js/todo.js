@@ -7,6 +7,8 @@ window.addEventListener("load", () => {
   const submitBtn = document.getElementById("submitBtn");
   const myForm = document.getElementById("myForm");
   const ulListing = document.getElementById("UL_LIST");
+  const updateBtn = document.getElementById("updateBtn");
+  
 
   myForm.addEventListener("submit", (refresh) => {
     refresh.preventDefault();
@@ -30,10 +32,10 @@ window.addEventListener("load", () => {
     newDeleteBtn.classList = "newDeleteBtnStyling";
     newDeleteBtn.id = mainId;
 
-// creating a edite button
-    const newEditeBtn = document.createElement("button");
-    newEditeBtn.innerHTML = "Edite";
-    newEditeBtn.classList = "newEditeBtnStyling";
+// creating a edit button
+    const neweditBtn = document.createElement("button");
+    neweditBtn.innerHTML = "edit";
+    neweditBtn.classList = "neweditBtnStyling";
 
 // creating a Check Box
     const newCheckBox = document.createElement("input");
@@ -45,7 +47,7 @@ window.addEventListener("load", () => {
     newParagraph.appendChild(paraghaphNode);
     newList.appendChild(newParagraph);
     newList.appendChild(newDeleteBtn);
-    newList.appendChild(newEditeBtn);
+    newList.appendChild(neweditBtn);
 
 
 // all appended childs are appending in <ul> tag
@@ -70,30 +72,32 @@ window.addEventListener("load", () => {
       }
     });
 
-// working on edite button
-    newEditeBtn.addEventListener("click", () => {
+
+
+
+                        // SOLVE THE EDIT BUTTON
+
+
+
+
+
+
+
+
+// working on edit button
+    neweditBtn.addEventListener("click", () => {
       if (newCheckBox.checked) {
         newCheckBox.checked = false;
-        inputText.value = document
-          .getElementById(mainId)
-          .innerText.slice(0, -12);
+        inputText.value = document.getElementById(mainId).innerText.slice(0, -12);
         submitBtn.style.display = "none";
-// creating a edite button
-        const newUpdateBtn = document.createElement("input");
-        newUpdateBtn.innerHTML = "Update";
-        newUpdateBtn.value = "Update";
-        newUpdateBtn.type = "button";
-        newUpdateBtn.classList = "newSaveStyling";
-        myForm.appendChild(newUpdateBtn);
+        updateBtn.style.display = "block";
+        updateBtn.id=mainId;
 
 // working on the update button
-        newUpdateBtn.addEventListener("click", () => {
-          const mainUpatingList = document.getElementById(mainId);
-          mainUpatingList.querySelector(".newParagraphStyling").innerHTML =
-            inputText.value;
+updateBtn.addEventListener("click", () => {
           submitBtn.style.display = "block";
-          newUpdateBtn.style.display = "none";
-          inputText.value = "";
+          updateBtn.style.display = "none";
+          
         });
       } else {
         alert("check before");
