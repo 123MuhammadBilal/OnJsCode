@@ -166,36 +166,36 @@
 
 
 // create obect in Array
-const myData = [
-  {
-    key:Math.random(),
-    title:'Web Designer',
-    name:'john',
-    status:'online',
-    stat:'complete'
-  },
-  {
-    key:Math.random(),
-    title:'Web Analyst',
-    name:'jonny',
-    status:'offline',
-    stat:'uncomplete'
-  },
-  {
-    key:Math.random(),
-    title:'Technical Consultant',
-    name:'harry',
-    status:'online',
-    stat:'complete'
-  },
-  {
-    key:Math.random(),
-    title:'Full-Stack Developer',
-    name:'lorem',
-    status:'offline',
-    stat:'uncomplete'
-  },
-]
+// const myData = [
+//   {
+//     key:Math.random(),
+//     title:'Web Designer',
+//     name:'john',
+//     status:'online',
+//     stat:'complete'
+//   },
+//   {
+//     key:Math.random(),
+//     title:'Web Analyst',
+//     name:'jonny',
+//     status:'offline',
+//     stat:'uncomplete'
+//   },
+//   {
+//     key:Math.random(),
+//     title:'Technical Consultant',
+//     name:'harry',
+//     status:'online',
+//     stat:'complete'
+//   },
+//   {
+//     key:Math.random(),
+//     title:'Full-Stack Developer',
+//     name:'lorem',
+//     status:'offline',
+//     stat:'uncomplete'
+//   },
+// ]
 
 
 
@@ -221,20 +221,53 @@ const myData = [
 //   console.log(item.key , item.name , item.status );
 // }
 
-const btn = document.getElementById('submitBtn');
-btn.addEventListener('click',()=>{
-  const input = document.getElementById('inputText');
-  const list = document.getElementById('myList');
-  myData.push({list:input.value});
-  for (const item of myData) {
-    console.log(item.list);
-    console.log(item.list);
-    var listing = item.list;
-    list.append(listing);
-    input.value="";
-  }
+// const btn = document.getElementById('submitBtn');
+// btn.addEventListener('click',()=>{
+//   const input = document.getElementById('inputText');
+//   const list = document.getElementById('myList');
+//   myData.push({list:input.value});
+//   for (const item of myData) {
+//     console.log(item.list);
+//     console.log(item.list);
+//     var listing = item.list;
+//     list.append(listing);
+//     input.value="";
+//   }
   
+// })
+
+
+// Id,comelete,title
+
+
+
+
+
+
+const btn = document.getElementById('submitBtn');
+const input = document.getElementById('inputText');
+
+const myData = [];
+btn.addEventListener('click',()=>{
+    myData.push(
+      {
+        id:Math.random(),
+        title:input.value,
+        complete:false,
+      }
+    );
+    for (let i = 0; i < myData.length; i++) {
+      console.log(myData[i]);
+    }
 })
+
+
+    // for (const item of myData) {
+    //   document.getElementById('myList').append(item.title);
+    //   input.value="";
+    //   console.log(item);
+    // }
+
 
 
 // Id,comelete,title
