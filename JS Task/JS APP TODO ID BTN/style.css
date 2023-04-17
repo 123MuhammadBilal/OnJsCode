@@ -74,12 +74,12 @@ body{
 input#updateBtn {
   display: none;
 }
-ul#UL_LIST {
+ul#myList {
   width: 900px;
   display: flex;
   flex-direction: column;
 }
-#UL_LIST li {
+#myList li {
   margin: 5px 0px;
   list-style-type: disclosure-closed;
   padding: 15px 35px;
@@ -96,18 +96,7 @@ ul#UL_LIST {
   width: 92%;
 }
 
-#form button{
-  padding: 10px 20px;
-  border-radius: 60px 60px 50px 50px;
-  color: #e8ac28e8;
-  background: radial-gradient(#f7f7f7, transparent);
-  border: 1px solid #00000052;
-  text-shadow: 1px -1px black;
-  font-size: 36px;
-  margin: 10px 0px;
-  outline: 0px;
-  cursor: pointer;
-}
+
 input#updateButton{
   display: none;
 }
@@ -123,10 +112,16 @@ span.navuser{
   float: left;
   color: #e18220;
 }
-button#UL_LIST{  
-  width: 60px;
+button.newDeleteBtnStyling{  
+  width: 50px;
   cursor: pointer;
-  height: 21px;
+  height: 40px;
+  background: #e18220;
+}
+button.neweditBtnStyling{  
+  width: 50px;
+  cursor: pointer;
+  height: 40px;
   background: #e18220;
 }
 output{

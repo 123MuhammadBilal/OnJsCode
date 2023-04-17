@@ -6,43 +6,44 @@ window.addEventListener("load", () => {
   const inputText = document.getElementById("inputText");
   const submitBtn = document.getElementById("submitBtn");
   const myForm = document.getElementById("myForm");
-  const ulListing = document.getElementById("UL_LIST");
+  const ulListing = document.getElementById("myList");
   const updateBtn = document.getElementById("updateBtn");
-  
+
 
   myForm.addEventListener("submit", (refresh) => {
     refresh.preventDefault();
     document.getElementById("audios").play();
 
-//creating a <li> tag
+    //creating a <li> tag
     const newList = document.createElement("li");
     const mainId = Math.random();
     newList.id = mainId;
 
-//creating a <p> tag
+    //creating a <p> tag
     const newParagraph = document.createElement("p");
     newParagraph.classList = "newParagraphStyling";
+    const updater = newParagraph.id = Math.random();
 
-// getting the input value to append in the <p> tag
+    // getting the input value to append in the <p> tag
     const paraghaphNode = document.createTextNode(inputText.value);
 
-// creating a delete button
+    // creating a delete button
     const newDeleteBtn = document.createElement("button");
     newDeleteBtn.innerHTML = "Delete";
     newDeleteBtn.classList = "newDeleteBtnStyling";
     newDeleteBtn.id = mainId;
 
-// creating a edit button
+    // creating a edit button
     const neweditBtn = document.createElement("button");
-    neweditBtn.innerHTML = "edit";
+    neweditBtn.innerHTML = "Edit";
     neweditBtn.classList = "neweditBtnStyling";
 
-// creating a Check Box
+    // creating a Check Box
     const newCheckBox = document.createElement("input");
     newCheckBox.type = "checkbox";
     newCheckBox.id = "newCheckBoxStyling";
 
-// appending all created Elements in the <li> tag
+    // appending all created Elements in the <li> tag
     newList.appendChild(newCheckBox);
     newParagraph.appendChild(paraghaphNode);
     newList.appendChild(newParagraph);
@@ -50,7 +51,7 @@ window.addEventListener("load", () => {
     newList.appendChild(neweditBtn);
 
 
-// all appended childs are appending in <ul> tag
+    // all appended childs are appending in <ul> tag
     ulListing.appendChild(newList);
 
     // del all appended <li> tags
@@ -59,49 +60,60 @@ window.addEventListener("load", () => {
       ulListing.removeChild(newList);
     });
 
-
-//after submition input will emputy
+    //after submition input will emputy
     inputText.value = "";
 
-// working on delete button
+    // working on delete button
     newDeleteBtn.addEventListener("click", () => {
       if (newCheckBox.checked) {
         ulListing.removeChild(document.getElementById(mainId));
       } else {
-        alert("Please Tick The Box");
+        alert("Please Check the Box");
       }
     });
 
+  // working on edit button
+  neweditBtn.addEventListener("click", () => {
+    if (newCheckBox.checked) {
+      inputText.value = document.getElementById(mainId).innerText.slice(0, -12);
+      submitBtn.style.display = "none";
+      updateBtn.style.display = "block";
+      const newId = Math.random();
+      newParagraph.id = newId 
 
-
-
-                        // SOLVE THE EDIT BUTTON
-
-
-
-
-
-
-
-
-// working on edit button
-    neweditBtn.addEventListener("click", () => {
-      if (newCheckBox.checked) {
+      // working on the update button
+      updateBtn.addEventListener("click", () => {
+        const updatedParagraph = document.getElementById(newId);
+        updatedParagraph.innerHTML = inputText.value;
+        inputText.value = " " 
         newCheckBox.checked = false;
-        inputText.value = document.getElementById(mainId).innerText.slice(0, -12);
-        submitBtn.style.display = "none";
-        updateBtn.style.display = "block";
-        updateBtn.id=mainId;
-
-// working on the update button
-updateBtn.addEventListener("click", () => {
-          submitBtn.style.display = "block";
-          updateBtn.style.display = "none";
-          
-        });
+        submitBtn.style.display = "block";
+        updateBtn.style.display = "none";
+        newParagraph.id = " ";
+      });
       } else {
         alert("check before");
       }
     });
   });
 });
+
+
+// =================Working on search=================
+
+function onSearch(){
+const searching = document.getElementById('searching');
+const myList = document.getElementById('myList');
+const liList = myList.getElementsByTagName('li');
+for (let i = 0; i < liList.length; i++) {
+  const pTag = liList[i].getElementsByTagName("p")[0];
+  const result = pTag.innerText;
+  const finalItem = result.indexOf(searching.value);
+  if (finalItem > -1) {
+    pTag.parentNode.style.display = "";
+  } else {
+    pTag.parentNode.style.display = "none";
+  }
+}
+}
+

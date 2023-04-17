@@ -26,7 +26,7 @@
     <span class="navuser" onclick="openNav()">&#9776;</span>
 
     <div class="container">
-      <input type="search" placeholder="search" name="text" id="searching" autocomplete="off" required />
+      <input type="search" placeholder="search" name="text" id="searching"  autocomplete="off" onkeyup="onSearch()" required  />
       <form id="myForm">
         <input type="button" id="mainDelBtn" value="Clear" placeholder="task">
         <input type="text" name="text" id="inputText" autocomplete="off" required />
@@ -34,7 +34,7 @@
         <input type="button" id="updateBtn" value="update" >
       </form>
       <output>
-        <ul id="UL_LIST">
+        <ul id="myList">
         </ul>
       </output>
     </div>
