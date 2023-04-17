@@ -9,7 +9,6 @@ window.addEventListener("load", () => {
   const ulListing = document.getElementById("myList");
   const updateBtn = document.getElementById("updateBtn");
 
-
   myForm.addEventListener("submit", (refresh) => {
     refresh.preventDefault();
     document.getElementById("audios").play();
@@ -22,7 +21,7 @@ window.addEventListener("load", () => {
     //creating a <p> tag
     const newParagraph = document.createElement("p");
     newParagraph.classList = "newParagraphStyling";
-    const updater = newParagraph.id = Math.random();
+    const updater = (newParagraph.id = Math.random());
 
     // getting the input value to append in the <p> tag
     const paraghaphNode = document.createTextNode(inputText.value);
@@ -50,7 +49,6 @@ window.addEventListener("load", () => {
     newList.appendChild(newDeleteBtn);
     newList.appendChild(neweditBtn);
 
-
     // all appended childs are appending in <ul> tag
     ulListing.appendChild(newList);
 
@@ -72,25 +70,30 @@ window.addEventListener("load", () => {
       }
     });
 
-  // working on edit button
-  neweditBtn.addEventListener("click", () => {
-    if (newCheckBox.checked) {
-      inputText.value = document.getElementById(mainId).innerText.slice(0, -12);
-      submitBtn.style.display = "none";
-      updateBtn.style.display = "block";
-      const newId = Math.random();
-      newParagraph.id = newId 
+    // working on edit button
+    neweditBtn.addEventListener("click", () => {
+      // applying the checkbox condition in edit button
+      if (newCheckBox.checked) {
+        inputText.value = document
+          .getElementById(mainId)
+          .innerText.slice(0, -12);
+        submitBtn.style.display = "none";
+        updateBtn.style.display = "block";
+        //using Math.random() methode
+        const newId = Math.random();
+        // giving the new id to <p> tag to target
+        newParagraph.id = newId;
 
-      // working on the update button
-      updateBtn.addEventListener("click", () => {
-        const updatedParagraph = document.getElementById(newId);
-        updatedParagraph.innerHTML = inputText.value;
-        inputText.value = " " 
-        newCheckBox.checked = false;
-        submitBtn.style.display = "block";
-        updateBtn.style.display = "none";
-        newParagraph.id = " ";
-      });
+        // working on the update button
+        updateBtn.addEventListener("click", () => {
+          const updatedParagraph = document.getElementById(newId);
+          updatedParagraph.innerHTML = inputText.value;
+          inputText.value = " ";
+          newCheckBox.checked = false;
+          submitBtn.style.display = "block";
+          updateBtn.style.display = "none";
+          newParagraph.id = " ";
+        });
       } else {
         alert("check before");
       }
@@ -98,22 +101,21 @@ window.addEventListener("load", () => {
   });
 });
 
+// Working on search
 
-// =================Working on search=================
-
-function onSearch(){
-const searching = document.getElementById('searching');
-const myList = document.getElementById('myList');
-const liList = myList.getElementsByTagName('li');
-for (let i = 0; i < liList.length; i++) {
-  const pTag = liList[i].getElementsByTagName("p")[0];
-  const result = pTag.innerText;
-  const finalItem = result.indexOf(searching.value);
-  if (finalItem > -1) {
-    pTag.parentNode.style.display = "";
-  } else {
-    pTag.parentNode.style.display = "none";
+function onSearch() {
+  const searching = document.getElementById("searching");
+  const myList = document.getElementById("myList");
+  const liList = myList.getElementsByTagName("li");
+  for (let i = 0; i < liList.length; i++) {
+    const pTag = liList[i].getElementsByTagName("p")[0];
+    const result = pTag.innerText;
+    const finalItem = result.indexOf(searching.value);
+    if (finalItem > -1) {
+      //using 'parentNode' to access the child's parent
+      pTag.parentNode.style.display = "";
+    } else {
+      pTag.parentNode.style.display = "none";
+    }
   }
 }
-}
-
