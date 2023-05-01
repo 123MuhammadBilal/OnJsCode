@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.form{
+    display: flex;
+    padding: 22px 0px;
+}
+li{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 400px;
+}
+a{
+    cursor: pointer;
+}
+input#updateBtn {
+    display: none;
+}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <input type="search" placeholder="search" name="text" id="searching"   autocomplete="off"  required  />
+        <div class="form"> 
+        <input type="button" id="mainDelBtn" value="Clear" placeholder="task">
+          <input type="text" name="text" id="inputText" autocomplete="off" required />
+          <input type="submit" id="submitBtn" value="add" >
+          <input type="button" id="updateBtn" value="update" >
+        </div>
+          <output id="paginationOuter">
+          <ul id="myList">
+          </ul>
+        </output>
+        
+        <div class="pagination">
+          <button id="first" >First</button>
+          <button id="previous" >Previous</button>
+          <button id="next" >Next</button>
+          <button id="last" >Last</button>
+        </div>
+        
+      </div>
+    </div>
+    </div>
+
+
+
+    <script src="todo.js"></script>
+</body>
+</html>

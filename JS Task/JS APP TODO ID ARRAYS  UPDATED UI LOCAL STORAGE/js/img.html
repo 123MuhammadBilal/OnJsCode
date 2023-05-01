@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Camera Example</title>
+    <style>
+video {
+    display: flex;
+    flex-wrap: wrap;
+    float: left;
+    width: 194px;
+    margin: 10px;
+}
+input[type="button"] {
+    position: absolute;
+}
+    </style>
+  </head>
+  <body>
+    <input type="button" value="Take a Picture" onclick="openCamera()" />
+    <script>
+      function openCamera() {
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices
+            .getUserMedia({ video: true })
+            .then(function (stream) {
+              var video = document.createElement("video");
+              video.srcObject = stream;
+              document.body.appendChild(video);
+              video.play();
+            })
+            .catch(function (error) {
+              console.error("Unable to access the camera.", error);
+            });
+        } else {
+          console.error("getUserMedia is not supported by this browser.");
+        }
+      }
+    </script>
+  </body>
+</html>

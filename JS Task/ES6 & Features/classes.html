@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="inputText">
+    <button onclick="updateUser()">Update User</button>
+    <script>
+
+        const inputText = document.getElementById('inputText');
+        const myData = [];
+
+
+        //creating class
+        class Users {
+
+            // constructor is part of Syntax 
+            constructor(name) {
+                // this.name is equal to 'name' parameter
+                this.name = name;
+            }
+
+            //calling function that push the this name in array and console the the name 
+            userDetails() {
+                myData.push(this.name);
+                console.log(`New User ${this.name} Has Been Added`);
+            }
+
+
+        }
+
+        function updateUser() {
+            const newUsers = new Users(inputText.value);
+            // calling userDetails function
+            newUsers.userDetails();
+            inputText.value = "";
+        }
+
+
+    </script>
+
+
+
+    <!-- fetch methode trying -->
+    <script>
+        const myBio = fetch('https://jsonplaceholder.typicode.com/todos/')
+        myBio.then((response) => response.json())
+            .then((responseData) => {
+                responseData.forEach(element => {
+                    console.log("API element title_______________" ,element.title);
+                });
+            }).catch((error) => {
+                console.log(error);
+            });
+    </script>
+
+
+
+
+
+    <!-- operator spreads -->
+    <script>
+        const array1 = ['1', '2', '3']
+        const array2 = ['4', '5', '6']
+        const bothArrays = [...array1, ...array2];
+        console.log(`using operator spreads___________________________________ ${bothArrays}`);
+    </script>
+
+
+
+    <!-- class practice -->
+    <script>
+        class UserDetail {
+            constructor(name, age, hobby, skill, dis, city) {
+                this.name = name;
+                this.age = age;
+                this.hobby = hobby;
+                this.skill = skill;
+                this.dis = dis;
+                this.city = city;
+            }
+            userDetailsUpdating() {
+                console.log(`___________________________________my name is ${this.name}, age ${this.age}, hobby ${this.hobby}, skill ${this.skill}, district ${this.dis}, and my city is ${this.city}`);
+            }
+        }
+
+        const updateding = new UserDetail('bilal', 22, 'codding', 'js', 'bahawalpur', 'hasilpur');
+        updateding.userDetailsUpdating();
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>

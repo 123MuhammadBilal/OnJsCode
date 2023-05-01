@@ -1,276 +1,375 @@
-// // ====================================TODO APP=================================
+const searching = document.getElementById("searching");
+const mainDelBtn = document.getElementById("mainDelBtn");
+const inputText = document.getElementById("inputText");
+const submitBtn = document.getElementById("submitBtn");
+const updateBtn = document.getElementById("updateBtn");
+const myList = document.getElementById("myList");
 
-// // load everything before execution
-// window.addEventListener("load", () => {
-//   const mainDelBtn = document.getElementById("mainDelBtn");
-//   const inputText = document.getElementById("inputText");
-//   const submitBtn = document.getElementById("submitBtn");
-//   const myForm = document.getElementById("myForm");
-//   const ulListing = document.getElementById("myList");
-//   const updateBtn = document.getElementById("updateBtn");
+const paginationfirst = document.getElementById("first");
+const paginationprevious = document.getElementById("previous");
+const paginationnext = document.getElementById("next");
+const paginationlast = document.getElementById("last");
 
-//   myForm.addEventListener("submit", (refresh) => {
-//     refresh.preventDefault();
-//     document.getElementById("audios").play();
+let myData = [];
 
-//     //creating a <li> tag
-//     const newList = document.createElement("li");
-//     const mainId = Math.random();
-//     newList.id = mainId;
+mainDelBtn.addEventListener("click", () => {
+  myList.innerHTML = "";
+  myData = [];
+});
 
-//     //creating a <p> tag
-//     const newParagraph = document.createElement("p");
-//     newParagraph.classList = "newParagraphStyling";
-//     const updater = (newParagraph.id = Math.random());
+submitBtn.addEventListener("click", () => {
+  // document.getElementById("first").click();
+  if (inputText.value !== "") {
+    const obj = {
+      id: Math.random() * 100,
+      title: inputText.value,
+      complete: false,
+    };
+    myData.push(obj);
 
-//     // getting the input value to append in the <p> tag
-//     const paraghaphNode = document.createTextNode(inputText.value);
+    console.log(myData);
 
-//     // creating a delete button
-//     const newDeleteBtn = document.createElement("button");
-//     newDeleteBtn.innerHTML = "Delete";
-//     newDeleteBtn.classList = "newDeleteBtnStyling";
-//     newDeleteBtn.id = mainId;
+    const li = document.createElement("li");
 
-//     // creating a edit button
-//     const neweditBtn = document.createElement("button");
-//     neweditBtn.innerHTML = "Edit";
-//     neweditBtn.classList = "neweditBtnStyling";
+    const newCheckBox = document.createElement("input");
+    newCheckBox.type = "checkbox";
 
-//     // creating a Check Box
-//     const newCheckBox = document.createElement("input");
-//     newCheckBox.type = "checkbox";
-//     newCheckBox.id = "newCheckBoxStyling";
+    const newParagraph = document.createElement("p");
+    newParagraph.innerText = obj.title;
+    newParagraph.id = obj.id;
 
-//     // appending all created Elements in the <li> tag
-//     newList.appendChild(newCheckBox);
-//     newParagraph.appendChild(paraghaphNode);
-//     newList.appendChild(newParagraph);
-//     newList.appendChild(newDeleteBtn);
-//     newList.appendChild(neweditBtn);
+    const newDeleteBtn = document.createElement("button");
+    newDeleteBtn.innerHTML = "Delete";
 
-//     // all appended childs are appending in <ul> tag
-//     ulListing.appendChild(newList);
+    const newEditBtn = document.createElement("button");
+    newEditBtn.innerHTML = "Edit";
+    newEditBtn.id = obj.id;
 
-//     // del all appended <li> tags
-//     mainDelBtn.addEventListener("click", () => {
-//       document.getElementById("audio").play();
-//       ulListing.removeChild(newList);
-//     });
+    li.appendChild(newCheckBox);
+    li.appendChild(newParagraph);
+    li.appendChild(newDeleteBtn);
+    li.appendChild(newEditBtn);
+    myList.appendChild(li);
 
-//     //after submition input will emputy
-//     inputText.value = "";
+    // working on seach
+    const searchFilter = document.getElementById("searching");
+    searchFilter.addEventListener("keyup", () => {
+      myList.innerHTML = "";
+      const filteredData = myData.filter((obj) =>
+        obj.title.includes(searchFilter.value)
+      );
+      console.log(filteredData);
 
-//     // working on delete button
-//     newDeleteBtn.addEventListener("click", () => {
-//       if (newCheckBox.checked) {
-//         ulListing.removeChild(document.getElementById(mainId));
-//       } else {
-//         alert("Please Check the Box");
-//       }
-//     });
+      for (let i = 0; i < filteredData.length; i++) {
+        const element = filteredData[i];
+        itemTitle = element.title;
+        console.log(itemTitle);
 
-//     // working on edit button
-//     neweditBtn.addEventListener("click", () => {
-//       // applying the checkbox condition in edit button
-//       if (newCheckBox.checked) {
-//         inputText.value = document
-//           .getElementById(mainId)
-//           .innerText.slice(0, -12);
-//         submitBtn.style.display = "none";
-//         updateBtn.style.display = "block";
-//         //using Math.random() methode
-//         const newId = Math.random();
-//         // giving the new id to <p> tag to target
-//         newParagraph.id = newId;
+        const li = document.createElement("li");
 
-//         // working on the update button
-//         updateBtn.addEventListener("click", () => {
-//           const updatedParagraph = document.getElementById(newId);
-//           updatedParagraph.innerHTML = inputText.value;
-//           inputText.value = " ";
-//           newCheckBox.checked = false;
-//           submitBtn.style.display = "block";
-//           updateBtn.style.display = "none";
-//           newParagraph.id = " ";
-//         });
-//       } else {
-//         alert("check before");
-//       }
-//     });
-//   });
-// });
+        const newCheckBox = document.createElement("input");
+        newCheckBox.type = "checkbox";
 
-// // Working on search
+        const newParagraph = document.createElement("p");
+        newParagraph.innerText = itemTitle;
+        newParagraph.id = obj.id;
 
-// function onSearch() {
-//   const searching = document.getElementById("searching");
-//   const myList = document.getElementById("myList");
-//   const liList = myList.getElementsByTagName("li");
-//   for (let i = 0; i < liList.length; i++) {
-//     const pTag = liList[i].getElementsByTagName("p")[0];
-//     const result = pTag.innerText;
-//     const finalItem = result.indexOf(searching.value);
-//     if (finalItem > -1) {
-//       //using 'parentNode' to access the child's parent
-//       pTag.parentNode.style.display = "";
-//     } else {
-//       pTag.parentNode.style.display = "none";
-//     }
-//   }
-// }
+        const newDeleteBtn = document.createElement("button");
+        newDeleteBtn.innerHTML = "Delete";
 
+        const newEditBtn = document.createElement("button");
+        newEditBtn.innerHTML = "Edit";
+        newEditBtn.id = obj.id;
 
-// starting the pagination
-// // starting the pagination
-// const lang = ['1' ,  '2' ,'3' ,  '4' , '5' , '6' , '7' ,'8' , '9' ,  '10' , '11' , '12' , '13' ,'14' ,'15' ,  '16' , '17' , '18' , '19' ,'20']
-// console.log(lang);
-// const first_page = 5;
-// const last_page = 5;
-// const per_page = 5;
-// const total_item = lang.length;
-// let n = 0;
-
-// function first(){
-// for (let i = 0; i < first_page; i++) {
-// console.log("first " + lang[i]);
-// }
-// }
-
-// function previous(){
-//   final = n++ * first_page - per_page 
-//   for (let i =  final ;  i < lang.length; i++) {
-//     const element = lang[i];
-//     console.log(element);
-//   }
-// }
-
-// function next(){
-//   final = n++ * first_page + per_page 
-//   for (let i =  final ;  i < lang.length; i++) {
-//     const element = lang[i];
-//     console.log(element);
-//   }
-// }
-
-// function last(){
-// for (let i = lang.length - last_page; i < lang.length; i++) {
-// console.log("last  " + lang[i]);
-// }
-// }
-
-
-
-
-
-
-
-// create obect in Array
-// const myData = [
-//   {
-//     key:Math.random(),
-//     title:'Web Designer',
-//     name:'john',
-//     status:'online',
-//     stat:'complete'
-//   },
-//   {
-//     key:Math.random(),
-//     title:'Web Analyst',
-//     name:'jonny',
-//     status:'offline',
-//     stat:'uncomplete'
-//   },
-//   {
-//     key:Math.random(),
-//     title:'Technical Consultant',
-//     name:'harry',
-//     status:'online',
-//     stat:'complete'
-//   },
-//   {
-//     key:Math.random(),
-//     title:'Full-Stack Developer',
-//     name:'lorem',
-//     status:'offline',
-//     stat:'uncomplete'
-//   },
-// ]
-
-
-
-// const newUser = {
-//   key:Math.random(),
-//   title:'programmer',
-//   name:'wanda',
-//   status:'online',
-//   stat:'complete'
-// }
-
-// myData.push(newUser)
-
-// // using for of loop
-// console.log(myData);
-// for (item of myData) {
-//   console.log(item);
-// }
-
-// // using for of loop
-// console.log(myData);
-// for (item of myData) {
-//   console.log(item.key , item.name , item.status );
-// }
-
-// const btn = document.getElementById('submitBtn');
-// btn.addEventListener('click',()=>{
-//   const input = document.getElementById('inputText');
-//   const list = document.getElementById('myList');
-//   myData.push({list:input.value});
-//   for (const item of myData) {
-//     console.log(item.list);
-//     console.log(item.list);
-//     var listing = item.list;
-//     list.append(listing);
-//     input.value="";
-//   }
-  
-// })
-
-
-// Id,comelete,title
-
-
-
-
-
-
-const btn = document.getElementById('submitBtn');
-const input = document.getElementById('inputText');
-
-const myData = [];
-btn.addEventListener('click',()=>{
-    myData.push(
-      {
-        id:Math.random(),
-        title:input.value,
-        complete:false,
+        li.appendChild(newCheckBox);
+        li.appendChild(newParagraph);
+        li.appendChild(newDeleteBtn);
+        li.appendChild(newEditBtn);
+        myList.appendChild(li);
       }
-    );
-    for (let i = 0; i < myData.length; i++) {
-      console.log(myData[i]);
+    });
+
+    // working on seach
+    searchFilter.addEventListener("keyup", () => {
+      myList.innerHTML = "";
+      const filteredData = myData.filter((obj) =>
+        obj.title.includes(searchFilter.value)
+      );
+      console.log(filteredData);
+
+      for (let i = 0; i < filteredData.length; i++) {
+        const element = filteredData[i];
+        itemTitle = element.title;
+        console.log(itemTitle);
+        const li = document.createElement("li");
+
+        const newCheckBox = document.createElement("input");
+        newCheckBox.type = "checkbox";
+
+        const newParagraph = document.createElement("p");
+        newParagraph.innerText = itemTitle;
+        newParagraph.id = element.id;
+
+        const newDeleteBtn = document.createElement("button");
+        newDeleteBtn.innerHTML = "Delete";
+
+        const newEditBtn = document.createElement("button");
+        newEditBtn.innerHTML = "Edit";
+        newEditBtn.id = element.id;
+
+        li.appendChild(newCheckBox);
+        li.appendChild(newParagraph);
+        li.appendChild(newDeleteBtn);
+        li.appendChild(newEditBtn);
+        myList.appendChild(li);
+
+        newDeleteBtn.addEventListener("click", () => {
+          if (newCheckBox.checked) {
+            const index = myData.findIndex(
+              (element) => element.id == newParagraph.id
+            );
+            if (index !== -1) {
+              myData.splice(index, 1);
+              document.getElementById(element.id).parentNode.remove();
+            } else {
+              alert("not found");
+            }
+          } else {
+            alert("Please Check the Box");
+          }
+        });
+
+        newEditBtn.addEventListener("click", () => {
+          if (newCheckBox.checked) {
+            newCheckBox.checked = false;
+            inputText.value = element.title;
+            idToUpdate = element.id;
+            console.log(idToUpdate);
+            submitBtn.style.display = "none";
+            updateBtn.style.display = "block";
+          } else {
+            alert("Please Check the Box");
+          }
+        });
+
+        updateBtn.addEventListener("click", () => {
+          const myObject = myData.find((element) => element.id == idToUpdate);
+          // find returns undefin if it cant find
+          if (myObject !== undefined) {
+            myObject.title = inputText.value;
+            document.getElementById(idToUpdate).innerHTML = inputText.value;
+            submitBtn.style.display = "block";
+            updateBtn.style.display = "none";
+            inputText.value = "";
+            idToUpdate = "";
+          }
+        });
+      }
+    });
+    newDeleteBtn.addEventListener("click", () => {
+      if (newCheckBox.checked) {
+        const index = myData.findIndex((obj) => obj.id == newParagraph.id);
+        if (index !== -1) {
+          myData.splice(index, 1);
+          document.getElementById(obj.id).parentNode.remove();
+        } else {
+          alert("not found");
+        }
+      } else {
+        alert("Please Check the Box");
+      }
+    });
+
+    newEditBtn.addEventListener("click", () => {
+      if (newCheckBox.checked) {
+        newCheckBox.checked = false;
+        inputText.value = obj.title;
+        idToUpdate = obj.id;
+        console.log(idToUpdate);
+        submitBtn.style.display = "none";
+        updateBtn.style.display = "block";
+      } else {
+        alert("Please Check the Box");
+      }
+    });
+
+    updateBtn.addEventListener("click", () => {
+      const myObject = myData.find((obj) => obj.id == idToUpdate);
+      // find returns undefin if it cant find
+      if (myObject !== undefined) {
+        myObject.title = inputText.value;
+        document.getElementById(idToUpdate).innerHTML = inputText.value;
+        submitBtn.style.display = "block";
+        updateBtn.style.display = "none";
+        inputText.value = "";
+        idToUpdate = "";
+      }
+    });
+    inputText.value = "";
+  } else {
+    alert("Please Enter a Task");
+  }
+
+  let currentPage = 1;
+  const PerPageitems = 2;
+
+    paginationfirst.addEventListener("click", () => {
+      myList.innerHTML = "";
+      const filteredData = myData.filter((obj) => obj);
+      const spliceData = filteredData.splice(0, PerPageitems);
+      console.log(spliceData);
+      for (let i = 0; i < spliceData.length; i++) {
+        const element=spliceData[i];
+
+          itemTitle = element.title;
+  
+          const li = document.createElement("li");
+  
+          const newCheckBox = document.createElement("input");
+          newCheckBox.type = "checkbox";
+  
+          const newParagraph = document.createElement("p");
+          newParagraph.innerText = itemTitle;
+          newParagraph.id = element.id;
+  
+          const newDeleteBtn = document.createElement("button");
+          newDeleteBtn.innerHTML = "Delete";
+  
+          const newEditBtn = document.createElement("button");
+          newEditBtn.innerHTML = "Edit";
+          newEditBtn.id = element.id;
+  
+          li.appendChild(newCheckBox);
+          li.appendChild(newParagraph);
+          li.appendChild(newDeleteBtn);
+          li.appendChild(newEditBtn);
+          myList.appendChild(li);
+        }
+    });
+
+
+    paginationprevious.addEventListener("click", () => {
+      if (currentPage === 1) {
+        paginationprevious.disabled = true;
+        paginationprevious.style.cursor = 'not-allowed';
     }
-})
+      myList.innerHTML = "";
+      const filteredData = myData.filter((obj) => obj);
+      currentPage--;
+      const startIndex = (currentPage - 1) * PerPageitems;
+      const endIndex = startIndex + PerPageitems;
+      const spliceData = filteredData.slice(startIndex, endIndex);
+      console.log(spliceData);
+      for (let i = 0; i < spliceData.length; i++) {
+        const element = spliceData[i];
+        itemTitle = element.title;
+        const li = document.createElement("li");
+        const newCheckBox = document.createElement("input");
+        newCheckBox.type = "checkbox";
+        const newParagraph = document.createElement("p");
+        newParagraph.innerText = itemTitle;
+        newParagraph.id = element.id;
+        const newDeleteBtn = document.createElement("button");
+        newDeleteBtn.innerHTML = "Delete";
+        const newEditBtn = document.createElement("button");
+        newEditBtn.innerHTML = "Edit";
+        newEditBtn.id = element.id;
+        li.appendChild(newCheckBox);
+        li.appendChild(newParagraph);
+        li.appendChild(newDeleteBtn);
+        li.appendChild(newEditBtn);
+        myList.appendChild(li);
+      }
+      paginationnext.disabled = false;
+      paginationnext.style.backgroundColor = '#b3b3b3ba';
+      paginationnext.style.cursor = 'pointer';
 
 
-    // for (const item of myData) {
-    //   document.getElementById('myList').append(item.title);
-    //   input.value="";
-    //   console.log(item);
-    // }
+      //   paginationprevious.style.backgroundColor = '#F5F5F5';
+      //   paginationprevious.style.cursor = 'none';
+      // }
+    });
+    
+
+    
+    paginationnext.addEventListener("click", () => {
+      myList.innerHTML = "";
+      const filteredData = myData.filter((obj) => obj);
+      const startIndex = currentPage * PerPageitems;
+      const endIndex = startIndex + PerPageitems;
+      const spliceData = filteredData.slice(startIndex, endIndex);
+      console.log(spliceData);
+      for (let i = 0; i < spliceData.length; i++) {
+        const element = spliceData[i];
+    
+        itemTitle = element.title;
+    
+        const li = document.createElement("li");
+    
+        const newCheckBox = document.createElement("input");
+        newCheckBox.type = "checkbox";
+    
+        const newParagraph = document.createElement("p");
+        newParagraph.innerText = itemTitle;
+        newParagraph.id = element.id;
+    
+        const newDeleteBtn = document.createElement("button");
+        newDeleteBtn.innerHTML = "Delete";
+    
+        const newEditBtn = document.createElement("button");
+        newEditBtn.innerHTML = "Edit";
+        newEditBtn.id = element.id;
+    
+        li.appendChild(newCheckBox);
+        li.appendChild(newParagraph);
+        li.appendChild(newDeleteBtn);
+        li.appendChild(newEditBtn);
+        myList.appendChild(li);
+      }
+      paginationprevious.disabled = false;
+      paginationprevious.style.backgroundColor = '#b3b3b3ba';
+      paginationprevious.style.cursor = 'pointer';
+
+      if (endIndex >= myData.length) {
+        paginationnext.disabled = true;
+        paginationnext.style.cursor = 'not-allowed';
+      }
+      currentPage++;
+    });
+
+    paginationlast.addEventListener("click", () => {
+      myList.innerHTML = "";
+      const filteredData = myData.filter((obj) => obj);
+      const spliceData = filteredData.splice(-PerPageitems);
+      console.log(spliceData);
+      for (let i = 0; i < spliceData.length; i++) {
+        const element=spliceData[i];
+
+          itemTitle = element.title;
+  
+          const li = document.createElement("li");
+  
+          const newCheckBox = document.createElement("input");
+          newCheckBox.type = "checkbox";
+  
+          const newParagraph = document.createElement("p");
+          newParagraph.innerText = itemTitle;
+          newParagraph.id = element.id;
+  
+          const newDeleteBtn = document.createElement("button");
+          newDeleteBtn.innerHTML = "Delete";
+  
+          const newEditBtn = document.createElement("button");
+          newEditBtn.innerHTML = "Edit";
+          newEditBtn.id = element.id;
+  
+          li.appendChild(newCheckBox);
+          li.appendChild(newParagraph);
+          li.appendChild(newDeleteBtn);
+          li.appendChild(newEditBtn);
+          myList.appendChild(li);
+        }
+    });
 
 
-
-// Id,comelete,title
-
-
-
+});

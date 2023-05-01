@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            text-align: center;
+            align-items: center;
+        }
+
+        .main {
+            display: flex;
+            height: 100vh;
+            background-color: grey;
+        }
+
+        .cookies {
+            width: 100%;
+            background-color: black;
+            bottom: 10px;
+            color: white;
+            position: absolute;
+            padding: 10px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1>main</h1>
+        <div class="cookies" id="cookiesBanner">
+            <h1>cookies</h1>
+            <button onclick="acceptCookies()">Accept</button>
+        </div>
+    </div>
+    <script>
+        const cookiesBanner = document.getElementById('cookiesBanner');
+        function acceptCookies() {
+            localStorage.setItem('cookies', 'accpted');
+            cookiesBanner.style.display = "none"
+        }
+
+        if (localStorage.getItem('cookies')) {
+            cookiesBanner.style.display = "none"
+        } else {
+            cookiesBanner.style.display = "block";
+        }
+    </script>
+</body>
+
+</html>
